@@ -25,9 +25,9 @@
               <%= link_to 'Approve', { :controller => "competitions", :action => "approve", :idea_id => approved.id} ,:class => 'btn btn-success',remote: true %>
               <%= link_to 'Reject', { :controller => "competitions", :action => "reject", :idea_id => approved.id} ,:class => 'btn btn-danger',remote: true %>
               <div id='show'>
-                <a class="popup" href="http://www.facebook.com/sharer.php?u=<%=root_url + url_for(idea)%>"><%= image_tag("f_logo.jpg", :class => "fbk")%></a>
-                <a class="popup" href="http://twitter.com/share?url=<%=root_url + url_for(idea)%>&text=Checkout this idea on idearator"><%= image_tag("twitter-bird-white-on-blue.jpg", :class => "tw")%></a>
-                <a class="popup" href="http://pinterest.com/pin/create/button/?url=<%=root_url + url_for(idea)%>&media=<%=root_url + idea.photo.url %>&description=<%= idea.description%>" ><%= image_tag("pinterest_badge_red.png", :class => "pin")%></a>
+                <a class="popup" href="http://www.facebook.com/sharer.php?u=<%=root_url + url_for(approved)%>"><%= image_tag("f_logo.jpg", :class => "fbk")%></a>
+                <a class="popup" href="http://twitter.com/share?url=<%=root_url + url_for(approved)%>&text=Checkout this idea on idearator"><%= image_tag("twitter-bird-white-on-blue.jpg", :class => "tw")%></a>
+                <a class="popup" href="http://pinterest.com/pin/create/button/?url=<%=root_url + url_for(approved)%>&media=<%=root_url + approved.photo.url %>&description=<%= approved.description%>" ><%= image_tag("pinterest_badge_red.png", :class => "pin")%></a>
               </div>
             </div>
           </div>

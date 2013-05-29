@@ -31,6 +31,7 @@ $('.btn-success.add-rating').click(function(){
   });
 
   $('.best_in_place').best_in_place();
+  $('.best_in_place').tooltip({animation: true, title:'Click to edit' , trigger: 'hover', html: true });
   $('.best_in_place').bind("ajax:success", function(){
     $('#edited-check-mark').remove();
     $(this).append("<i class='icon-ok pull-right' id ='edited-check-mark'></i>");

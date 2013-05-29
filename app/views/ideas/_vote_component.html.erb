@@ -1,8 +1,11 @@
+<%  if defined?(voted).nil?
+      voted = user_signed_in? && current_user.voted_for?(idea)
+    end %>
 <% size ||= 'span4' %>
 <div class='size vote-component archive-status'>
   <div class='size vote-count' id = 'votesVotes'><%= idea.num_votes %></div>
   <div class='size'>
-    <% if user_signed_in? && current_user.voted_for?(idea) %>
+    <% if voted %>
       <%= link_to 'Unvote', { :controller => "ideas", :action => "unvote", :id => idea.id}, remote:true, :class => 'btn  btn-danger margin' %>
     <% else %>
       <%= link_to 'Vote', { :controller => "ideas", :action => "vote", :id => idea.id }, remote: true, :class =>"btn btn-success margin" %>

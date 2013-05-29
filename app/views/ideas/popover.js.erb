@@ -6,4 +6,5 @@ $('a[data-popover-idea-id]').popover({
   placement: 'bottom'
 });
 
-$('a[data-popover-idea-id="<%=escape_javascript(params[:id])%>"]').popover('show')
+$('a[data-popover-idea-id="<%=escape_javascript(params[:id])%>"]').popover('show');
+apply_tag_handlers();

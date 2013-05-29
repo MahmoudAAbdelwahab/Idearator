@@ -1,0 +1,40 @@
+if($('#stream_results').length > 0){
+  var search_text = "<%= idea.title %>";
+  var tags_list = [];
+
+  <% idea.tags.each do |tag| %>
+    var this_tag = "<%= tag.name %>";
+    tags_list.push(this_tag);
+  <% end %>
+
+  var curr_search = $('#search').val();
+  var curr_tags = $('#stream_results').data('tags');
+  var tags_exist = true;
+
+  if(curr_tags.length != 0){
+    tags_exist = false;
+    for(var i = 0; i < tags_list.length; i++){
+      if($.inArray(tags_list[i], curr_tags)!= -1){
+        tags_exist = true;
+        break;
+      }
+    }
+  }
+
+  if(!tags_exist){
+    if ($("#stream_results").data("outsidetags").length > 0){
+      var tag_outside = $("#stream_results").data("outsidetags")[0]
+      if($.inArray(tag_outside, tags_list)!= -1){
+        tags_exist = true;
+      }
+    }
+  }
+
+  if(search_text.indexOf(curr_search) != -1 && tags_exist){
+    $("#alert-message").fadeOut(1500);
+    $("#replacable-stream").prepend("<%= escape_javascript(render(partial: "/ideas/stream_component", locals:{idea: idea, controller: 'stream', voted: false})) %>");
+    $("#replacable-stream .idea-<%= idea.id%>").hide().slideDown(1500);
+    apply_tag_handlers();
+    apply_tooltip_handlers();
+  }
+}

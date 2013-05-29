@@ -13,6 +13,7 @@
   <p class='text-error'>This User is currently deactivated!</p>
 <% end %>
 <div class="btn-group">
+  <% if current_user != nil %>
   <% if @user == current_user %>
     <%= link_to 'Edit', edit_user_registration_path, :class => "btn"%>
     <%= link_to 'Deactivate', {:controller => 'users' ,:action => 'confirm_deactivate'},:class => "btn"%>
@@ -36,6 +37,7 @@
   <% if current_user != nil and current_user.type == "Admin" and @registered and @user.banned==false%>
     <%= render :partial => 'modal_reject'%>
     <p><a data-toggle="modal" href="#reject" class="options btn btn-danger">Reject</a></p>
+  <% end %>
   <% end %>
 </div>
 <% if @user.banned == false and @user.active == true %>

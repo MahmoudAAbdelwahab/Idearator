@@ -69,7 +69,9 @@
                   <ul class=" btn-group inline">
                     <% c.tags.each do |tag| %>
                       <li class="taging">
-                        <a href="#" class="aTag"><%= tag.name %></a></li>
+                        <span class="label label-info">
+                          <a href="#" class="aTag"><%= tag.name %></a></li>
+                        </span>
                     <% end %>
                   </ul>
                 </div>

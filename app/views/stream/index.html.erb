@@ -99,15 +99,20 @@ in_stream = true;
   </div>
   <div id="landing-stream">
     <div class='row'>
-      <div class='span8'>
-        <div id="stream_results">
+      <div class='span8' id="stream">
+        <div id="stream_results" data-tags=[] data-outsidetags='<%= @filter_tmp %>'>
           <%= render :partial => 'index'%>
         </div>
+          <div id="spinner-outer" class="well">
+            <div id="spinner">
+              <div class='icon-refresh icon-spin icon-large' id="spinner-inner">
+              </div>
+          </div>
+        </div>
       </div>
-      <div class ='row'>
-        <div id='sidebar' class='span4'>
+      <div id='sidebar' class='span4'>
           <div class="topten" id="sidebar_content">
-            <h1 class="title">Top Ten</h1>
+            <h2 class="title">Top Ten</h2>
             <% @top.each do |top| %>
             <% if top.user.active == true and top.user.banned == false%>
             <div class="topten_idea media">
@@ -129,22 +134,29 @@ in_stream = true;
             <% end %>
             <%end%>
           </div>
-          <%= render :partial => '/trends/index'%>
+          <div id="trending-ideas">
+            <%= render :partial => '/trends/index'%>
+          </div>
           <div class="affix" data-spy='affix'>
-            <button class="btn backtotop" type="button">To Top
+            <button class="btn backtotop" type="button" id="back-to-top">To Top
               <i class = 'icon-black icon-hand-up'></i>
             </button>
           </div>
         </div>
-      </div>
     </div>
   </div>
 <%else%>
   <div>
     <div class='row'>
-      <div class='span8'>
-        <div id="stream_results">
+      <div class='span8' id="stream">
+        <div id="stream_results" data-tags=[] data-outsidetags='<%= @filter_tmp %>'>
           <%= render :partial => 'index'%>
+        </div>
+         <div id="spinner-outer" class="well">
+            <div id="spinner">
+              <div class='icon-refresh icon-spin icon-large' id="spinner-inner">
+            </div>
+          </div>
         </div>
       </div>
       <div class ='row'>
@@ -259,8 +271,8 @@ in_stream = true;
             </div>
           <% end %>
           <div class="topten">
-            <h1 class="title">Top Ten
-            </h1>
+            <h2 class="title">Top Ten
+            </h2>
             <% @top.each do |top| %>
               <% if top.user.active == true and top.user.banned == false%>
                 <div class="topten_idea media well">

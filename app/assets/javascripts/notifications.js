@@ -11,6 +11,10 @@ $(document).ready(add_notification_event_handlers);
 
 function notification_click(select, redirect){
   $(select).click(function(){
+    if(select == 'div.delete-notification'){
+      $(this).removeClass('unread');
+      $(this).addClass('read');
+    }
     var notification = $(this).data('notification');
     $.getScript(redirect + ".js?&notification=" + notification);
   });

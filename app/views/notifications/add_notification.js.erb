@@ -1,6 +1,8 @@
 $("#count").html("<%= escape_javascript(render(partial: "notifications/count_notifications", locals:{count: count})) %>");
-$(".nav .notification:first").before("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read})) %>");
+$(".nav #update-dropdown").prepend("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read})) %>");
 if($('#notifications').length > 0){
-  $(".content .notification:first").before("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read})) %>");
+  $(".content #notifications").prepend("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read, count: count})) %>");
+  $('.content .notification:first').hide().slideDown(1000);
+  $.getScript('/set_read.js?&notification=' + <%= notification.id %>);
 }
 add_notification_event_handlers();

@@ -44,7 +44,10 @@ function popupCenter(url, width, height, name) {
 
 
 $(document).ready(function() {
+  apply_tooltip_handlers();  
+});
 
+function apply_tooltip_handlers(){
   $(".fbk").tooltip({
     toggle: "tooltip",
     title: "Share on Facebook",
@@ -59,4 +62,4 @@ $(document).ready(function() {
     toggle: "tooltip",
     title: "Share on pinterest",
   });
-});
+}

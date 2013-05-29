@@ -27,8 +27,9 @@ module Coolster
   # +script+:: the parameter is a string (javascript).
   # Author: Amina Zoheir
   def self.update_all(script)
+    puts COOLSTER_URL
     begin
-      RestClient.post 'http://localhost:9292/push_to_all', {script: script, multipart: true}
+      RestClient.post ('http://' + COOLSTER_URL + '/push_to_all'), {script: script, multipart: true}
     rescue => e
     end
   end
@@ -42,7 +43,7 @@ module Coolster
     scripts = {}
     user_ids = @@online_user_ids & user_ids
     begin
-      RestClient.post 'http://localhost:9292/push', {script: script, users: user_ids, multipart: true}
+      RestClient.post 'http://' + COOLSTER_URL + '/push', {script: script, users: user_ids, multipart: true}
     rescue => e
     end
   end
@@ -70,7 +71,7 @@ module Coolster
       raise Exception
     end
     begin
-      RestClient.post 'http://localhost:9292/push_to_each', {scripts: scripts, multipart: true}
+      RestClient.post 'http://' + COOLSTER_URL + '/push_to_each', {scripts: scripts, multipart: true}
     rescue => e
     end
   end

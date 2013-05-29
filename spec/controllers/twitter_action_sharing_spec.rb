@@ -11,7 +11,7 @@ describe 'Twitter Sharing' do
     @user.confirm!
     @user.provider = 'twitter'
     @user.save
-    @idea = FactoryGirl.create(:idea)
+    @idea = FactoryGirl.build(:idea)
     @idea.user_id = @user.id
     @idea.save
     @twitter_client = Twitter::Client.new

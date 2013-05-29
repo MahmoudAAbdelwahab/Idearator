@@ -1,8 +1,9 @@
 // Does long polling on Coolsters server.
 // Author: Amina Zoheir
+
 function poll() {
   $.ajax({
-    url: 'http://localhost:9292/poll',
+    url: 'http://' + COOLSTER_URL + '/poll',
     dataType: "script",
     tryCount : 0,
     retryLimit : 5,

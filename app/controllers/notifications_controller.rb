@@ -66,8 +66,9 @@ class NotificationsController < ApplicationController
   def set_read
     notification = Notification.find(params[:notification])
     notification.set_read_for current_user
+    count = current_user.unread_notifications_count
     respond_to do |format|
-      format.js { render 'layouts/update_nav_bar' }
+      format.js { render 'update_count', locals:{count: count} }
     end
   end
 

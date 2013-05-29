@@ -25,7 +25,9 @@
           <div class='row'>
             <div class='tagsPopover'>
               <% @idea.tags.each do |tag| %>
-                <span class="label label-info "><%= tag.name %></span>
+                <button class="btn btn-link" value='<%= tag.name %>'>
+              <span class="label label-info "><%= tag.name %></span>
+            </button>
               <% end %>
             </div>
           </div>

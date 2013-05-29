@@ -42,18 +42,12 @@ $(document).ready(function() {
     e.preventDefault();
     search_type = true;
     $("#searchtype").val("true");
-    $('.user-search-div').addClass('drop-down-item');
-    $('.idea-search-div').removeClass('drop-down-item');
-    $('#search').attr('placeholder', "Search for users...");
   });
 
   $("#idea-search-button").click(function remove_button_handler(e) {
     e.preventDefault();
     search_type = false;
     $("#searchtype").val("false");
-    $('.user-search-div').removeClass('drop-down-item');
-    $('.idea-search-div').addClass('drop-down-item');
-    $('#search').attr('placeholder', "Search for ideas...");
   });
 
   $("a.popup").click(function (e) {

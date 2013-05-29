@@ -65,12 +65,13 @@
       <% if @user == @idea.user_id %>
         <script>
           $('#image-edit-link').popover({animation: true, content:'<%= escape_javascript(render(:partial => "image")) %>', trigger: 'click', html: true});
+          $('#image-edit-link').tooltip({animation: true, title:'Click to edit' , trigger: 'hover', html: true });
         </script>
       <% end %>
       <div class='pull-left'>
         <%if @chosentags != nil %>
           <% @chosentags.each do |tag|%>
-            <span class="label label-info "><%= tag.name %></span>
+             <span class="label label-info"><%= link_to tag.name, {:controller => "stream", :action => "index", :tag => [tag.name], :mypage => "1" , :search_user => "false", :insert => "true", :set_global => "true"}, :class => "outside_tag_button"%></span>
           <% end %>
         <% end %>
         <%= render :partial => 'share' ,locals: { idea: @idea }%>

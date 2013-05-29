@@ -2,6 +2,18 @@ class IdeasController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new ,:create , :edit, :update, :vote, :unvote]
 
+  class CoolsterPusher < AbstractCoolsterPusher
+
+    def push_to_stream(idea)
+      debugger
+      puts "\n\n\nAMINA"  
+      script = render 'stream/add_to_stream',
+              locals: { idea: idea }
+      puts script
+      Coolster.update_all(script)
+    end
+
+  end
 
   # view idea of current user
   # Params:
@@ -9,11 +21,11 @@ class IdeasController < ApplicationController
   # Author: Marwa Mehanna
   def show
     @idea = Idea.find(params[:id])
+    @chosentags = Idea.find(params[:id]).tags
     if user_signed_in?
       @user = current_user.id
       @username = current_user.username
       @tags = Tag.all
-      @chosentags = Idea.find(params[:id]).tags
       @competitions = Competition.joins(:tags).where('tags.id' => @idea.tags)
       respond_to do |format|
         format.html # show.html.erb
@@ -243,8 +255,7 @@ class IdeasController < ApplicationController
   def add_rating
     if current_user.type == 'Committee'
       @idea=Idea.find(params[:id])
-      @idea.approved = true
-      @idea.save
+      @idea.approve
       @rating = params[:rating]
       @rating.each do |rate|
         r = @idea.ratings.build

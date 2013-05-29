@@ -1,3 +1,9 @@
+<%  if defined?(controller).nil?
+      controller = params[:controller]
+    end %>
+<%  if defined?(voted).nil?
+      voted = user_signed_in? && current_user.voted_for?(idea)
+    end %>
 <% if idea.user.active and !idea.user.banned and idea.approved %>
   <div class='wrapper row'>
     <div class="idea-<%= idea.id%> span8" id="share">
@@ -6,28 +12,25 @@
       </div>
       <div class='span2'>
         <%= image_tag idea.photo.url(:medium) %>
-        <ul class ="inline">
-          <% idea.tags.each do |tag| %>
-            <% if params[:controller] == 'stream' %>
+        <% idea.tags.each do |tag| %>
+          <% if controller == "stream" || params[:controller] == "stream" %>
             <button class="btn btn-link" value='<%= tag.name %>'>
               <span class="label label-info "><%= tag.name %></span>
             </button>
-            <% else %>
+          <% else %>
             <span class="label label-info"><%= link_to tag.name, {:controller => "stream", :action => "index", :tag => [tag.name], :mypage => "1" , :search_user => "false", :insert => "true", :set_global => "true"}, :class => "outside_tag_button"%></span>
-            <% end %>
           <% end %>
-        </ul>
-          <%= render :partial => "/ideas/share", locals: { idea: idea } %>
+        <% end %>
+        <%= render :partial => "/ideas/share", locals: { idea: idea } %>
       </div>
       <div class='span4'>
         <%= 'by' %>
-        <span><%= link_to idea.user.username , idea %></span>
+        <span><%= link_to idea.user.username , idea.user.becomes(User) %></span>
         <div><%= idea.description %></div>
       </div>
       <div class='span1 pull-right'>
-        <%= render :partial => "ideas/vote_component", locals: { idea: idea ,size: 'span1'} %>
+        <%= render :partial => "ideas/vote_component", locals: { idea: idea ,size: 'span1', voted: voted} %>
       </div>
     </div>
   </div>
 <% end %>
-<hr />

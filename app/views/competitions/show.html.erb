@@ -24,7 +24,7 @@
       <div id='tags'>
         <%if @chosen_tags_competition != nil %>
           <% @chosen_tags_competition.each do |tag|%>
-            <span class="label label-info "><%= tag.name %></span>
+            <span class="label label-info"><%= link_to tag.name, {:controller => "stream", :action => "index", :tag => [tag.name], :mypage => "1" , :search_user => "false", :insert => "true", :set_global => "true"}, :class => "outside_tag_button"%></span>
           <% end %>
         <% end %>
       </div>

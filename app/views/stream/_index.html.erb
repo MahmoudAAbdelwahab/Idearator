@@ -1,3 +1,15 @@
+  <% if !@page.nil? %>
+    <% if !@search_with_user %>
+      <% if @page == "1" %>
+      <div id="replacable-tags">
+        <%= render partial: 'tags', locals: { filter_this: @filter_tmp } %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+<div id="replacable-stream">
 <% search_results_count = 0 %>
 <% if @page.nil? %>
   <% if !@searching_with %>
@@ -17,9 +29,6 @@
     <% end %>
   <% else %>
     <% if !@search_with_user %>
-      <% if @page == "1" %>
-        <%= render partial: 'tags', locals: { filter_this: @filter_tmp } %>
-      <% end %>
       <% @ideas.each do |idea| %>
         <% if idea.approved == true and idea.user.banned == false and idea.user.active == true %>
           <% search_results_count = search_results_count + 1 %>
@@ -35,14 +44,28 @@
       <% end %>
     <% end %>
   <% end %>
+</div>
 
-<% if @searchtext != "" %>
-  <% if search_results_count == 0 %>
-    <% if @page == "1" %>
-      <div class="alert alert-error">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>No Results Found</strong>
-      </div>
-    <% end%>
-  <% end %>
+<% if search_results_count == 0 %>
+  <script type="text/javascript">
+    $("#spinner-outer").hide();
+  </script>
+<% else %>
+  <script type="text/javascript">
+    $("#spinner-outer").show();
+  </script>
 <% end %>
+
+<div id="alert-message">
+  <% if @searchtext != "" %>
+    <% if search_results_count == 0 %>
+      <% if @page == "1" %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>No Results Found</strong>
+        </div>
+      <% end%>
+    <% end %>
+  <% end %>
+</div>
+

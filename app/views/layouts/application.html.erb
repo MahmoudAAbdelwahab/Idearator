@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# idearator: http://ogp.me/ns/fb/idearator#">
     <meta property="fb:app_id" content="446451938769749"/>
@@ -7,6 +8,10 @@
     <title><%= content_for?(:title) ? yield(:title) : 'Idearator' %></title>
     <meta name='description' content='' />
     <meta name='author' content='' />
+
+    <script type="text/javascript">
+      COOLSTER_URL = "<%= COOLSTER_URL %>";
+    </script>
     <%= stylesheet_link_tag 'application', :media => 'screen' %>
     <%= javascript_include_tag 'application' %>
     <%= yield :javascript_includes %>
@@ -19,7 +24,7 @@
   </head>
   <body data-devise=<%= user_signed_in? %>>
     <% if user_signed_in? %>
-    <div class='enter-idea-notification-modal'></div>
+      <div class='enter-idea-notification-modal'></div>
       <div id='myModal' class='modal hide fade'>
         <div class='modal-header'>
           <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
@@ -43,8 +48,8 @@
     <%end%>
     <div id='user-profile-modal' class='modal hide fade'>
       <div class='modal-header'>
-          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
-          <h2 id='myModalLabel'></h2>
+        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+        <h2 id='myModalLabel'></h2>
       </div>
       <div class='modal-body'>
       </div>
@@ -52,7 +57,7 @@
     <%= render 'layouts/unauthorized_modal' %>
     <header class='navbar navbar-fixed-top'>
       <nav class='navbar-inner'>
-        <div id = 'update-nav' class='container'>
+        <div id = 'main-nav' class='container'>
           <!--! Add/edit the navigation links in the _navigation partial-->
           <%= render 'layouts/navigation' %>
         </div>
@@ -60,7 +65,7 @@
     </header>
     <div id='main' role='main'>
       <div class='container'>
-        <div class='content' id='content-div-application' value=''>
+        <div class='content' id='content-div-application'>
           <% if params[:controller] == ''%>
             <div class='row'>
               <div class='span8'>
@@ -105,14 +110,13 @@
           <h4>enter the email below</h4>
           <%= form_tag( '/invite_committee', :method => "get") do %>
             <%= text_field_tag(:email,nil,:placeholder => 'enter email here' , :class => 'span3') %></p>
-        </div>
-        <div class="modal-footer">
+          <div class="modal-footer">
             <%= submit_tag("send invitation",:class => 'btn btn-success') %>
-          <% end %>
-          <a href="#" class="btn" data-dismiss="modal">Close</a>
-        </div>
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+          </div>
+        <% end %>
       </div>
     </div>
-    <!--! end of #main -->
-  </body>
-</html>
+  </div>
+  <!--! end of #main -->
+</body>
