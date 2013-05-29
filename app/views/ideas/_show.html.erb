@@ -1,0 +1,18 @@
+<div id='tags'>
+  <ul class="tags inline">
+    <% if @tags %>
+      <% @tags.each do |tag| %>
+        <li><label class="tag"><%= tag %></label></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<a id ="click" class="btn btn-success pull-right"><i class="icon-chevron-down"></i>
+  Filter</a>
+<br/>
+<br/>
+<div id ="fil" class="hidden pull-right" height="300px">
+  <input type="text" id="input-facebook-theme" name="blah2" />
+  <a id="filter" class="btn btn-success pull-right">apply</a>
+  <%= button_to "cancel" ,{:controller => 'stream', :action => "index" }, {:class => "btn btn-danger pull-right" } %>
+</div>

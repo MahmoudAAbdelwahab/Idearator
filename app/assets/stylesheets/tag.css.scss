@@ -1,0 +1,50 @@
+// Place all the styles related to the tag controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.token-input-dropdown-facebook {
+  font-size: 14px;
+}
+
+div.token-input-dropdown-facebook b {
+  font-weight: normal;
+}
+
+li.token-input-token-facebook{
+  background-color: rgba(0,136,200,0.1);
+}
+
+div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-facebook {
+  background-color: #0088CC;
+}
+
+li.token-input-selected-token-facebook {
+  background-color: #0088CC;
+}
+
+div.token-input-dropdown-facebook ul li{
+  clear: both;
+  display: block;
+  font-weight: normal;
+  line-height: 20px;
+  padding: 3px 20px;
+  list-style: none outside none;
+  white-space: nowrap;
+}
+
+div.token-input-dropdown-facebook ul{
+  background-clip: padding-box;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px 6px 6px 6px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  float: left;
+  left: 0;
+  list-style: none outside none;
+  margin: 2px 0 0;
+  min-width: 400px;
+  padding: 5px 0;
+  top: 100%;
+  z-index: 1000;
+}

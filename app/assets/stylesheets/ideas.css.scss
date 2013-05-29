@@ -1,0 +1,70 @@
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #666;
+  &:first-letter { text-transform: uppercase };
+}
+
+#control{
+  padding-top:10px;
+  padding-right:10px;
+}
+
+.facebook{
+  width:30px;
+  height:30px;
+  cursor: pointer;
+  padding-right:5px;
+}
+
+.twitter{
+  width:30px;
+  height:30px;
+  cursor:pointer;
+}
+
+.hint {
+  display:none;
+}
+
+.vote-component {
+  text-align: center;
+}
+
+.vote-count {
+}
+
+.idea-page .vote-component .vote-count {
+  font-size: 80px;
+  line-height: 60px;
+}
+
+.idea-page .vote-component .btn {
+  border-radius: 12px 12px 12px 12px;
+  font-size: 17.5px;
+  padding: 22px 45px;
+}
+.margin {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+
+.idea-page .enter_competition{
+  text-align: center;
+}
+
+.outside_tag_button{
+  color:#FFFFFF;
+}
+
+.outside_tag_button:hover{
+  color:#FFFFFF;
+  text-decoration: none;
+}
+

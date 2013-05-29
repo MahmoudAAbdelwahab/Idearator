@@ -1,0 +1,103 @@
+// Place all the styles related to the notification controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the notification controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+p.same_line{
+  display: inline;
+}
+
+.content .notification{
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  position:relative
+}
+
+.nav .notification{
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  min-height: 40px;
+  position:relative
+}
+
+.unread{
+  background: rgba(0,153,153, 0.25);
+}
+
+.read{
+  background: rgba(0, 0, 0, 0.10);
+}
+
+div.centered{
+  padding: 8px;
+}
+
+h3.title{
+  margin: 11px;
+  font-size: 20px;
+}
+
+.unread-drop{
+  background: rgba(0,153,153, 0.05);
+}
+
+.content .notification:hover .notification-link{
+  display: inline;
+}
+
+.content .notification.read:hover {
+  background: rgba(0, 0, 0, 0.20);
+}
+
+.content .notification.unread:hover {
+  background: rgba(0,153,153, 0.50);
+}
+
+.nav .notification:hover .notification-link{
+  display: inline;
+}
+
+.nav .notification.read:hover {
+  background: rgba(0, 0, 0, 0.20);
+}
+
+.nav .notification.unread:hover {
+  background: rgba(0,153,153, 0.50);
+}
+
+.notification-link{
+  display: none;
+  float: right;
+}
+
+.notification-link a{
+  color: #0088CC;
+}
+
+.notification-link a:hover{
+  text-decoration: none;
+  color: #005580;
+}
+
+div.padding_right{
+  padding-right: 20px;
+}
+
+.notification-date{
+  font-size: 10px;
+  color:#686868;
+  position:absolute;
+  bottom:0;
+  right:0;
+  padding-right: 20px;
+}
+
+.custom-dropdown{
+  width: 400px;
+  max-height: 510px;
+  overflow-y: auto;
+}

@@ -1,0 +1,2 @@
+<span ><h2><%= @idea.num_votes %></h2></span>
+<%= link_to 'Unvote', { :controller => "ideas", :action => "unvote" }, :id => @idea.id,remote: true, :confirm => "Are you sure?", remote: true,:class => 'btn btn-danger' %>

@@ -1,0 +1,16 @@
+<h3 class='text-center unauth-header'>Sign up</h3>
+
+<%= form_tag user_registration_path do %>
+  <%= label_tag 'email' %>
+  <%= text_field_tag 'user[email]' %>
+  <%= label_tag 'password' %>
+  <%= password_field_tag 'user[password]' %>
+  <%= label_tag 'confirm_password' %>
+  <%= password_field_tag 'user[password_confirmation]' %>
+  <%= label_tag 'username' %>
+  <%= text_field_tag 'user[username]' %>
+  <div>
+    <%= submit_tag 'Sign up', class: 'btn btn-info sign_up_button' %>
+  </div>
+<% end %>
+

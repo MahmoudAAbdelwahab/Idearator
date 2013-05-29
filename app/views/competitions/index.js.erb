@@ -1,0 +1,20 @@
+var main ;
+var type;
+main = $('.content');
+<% if @firstTime %>
+  main.empty();
+  <% if @type == 1 %>
+    type = 1
+  <%elsif @type == 2 %>
+    type =2;
+  <%elsif @type == 3 %>
+    type = 3;
+  <% end %>
+  main.append("<%= escape_javascript(render(:partial => "index")) %>");
+<% else %>
+  <% if @filter %>
+    $('.competitions').empty();
+  <% end %>
+  main.append("<%= escape_javascript(render(:partial => "index")) %>");
+  apply_script();
+<% end %>

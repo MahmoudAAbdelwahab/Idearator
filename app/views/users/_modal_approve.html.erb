@@ -1,0 +1,15 @@
+<div id="approve" class="modal hide fade in" style="display: none; ">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Approve Committee Member Registration</h3>
+  </div>
+  <div class="modal-body">
+    <h5>
+      Are you sure you want to approve this user registration ?
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Approve",  { :controller => "users", :action => "approve_committee"}, :class => 'btn btn-success pull-center'%>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>

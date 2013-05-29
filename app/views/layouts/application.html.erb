@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# idearator: http://ogp.me/ns/fb/idearator#">
+    <meta property="fb:app_id" content="446451938769749"/>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title><%= content_for?(:title) ? yield(:title) : 'Idearator' %></title>
+    <meta name='description' content='' />
+    <meta name='author' content='' />
+    <%= stylesheet_link_tag 'application', :media => 'screen' %>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :javascript_includes %>
+    <% if params[:controller] %>
+      <%= stylesheet_link_tag params[:controller] %>
+      <%= javascript_include_tag params[:controller] %>
+    <% end %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body data-devise=<%= user_signed_in? %>>
+    <% if user_signed_in? %>
+    <div class='enter-idea-notification-modal'></div>
+      <div id='myModal' class='modal hide fade'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+          <h2 id='myModalLabel'>Account Settings</h2>
+        </div>
+        <div class='modal-body'>
+          <%= render 'users/settings' %>
+        </div>
+      </div>
+    <%end%>
+    <% if user_signed_in? %>
+      <div id='deactivateModal' class='modal hide fade'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+          <h2 id='deactivateModalLabel'>Deactivate</h2>
+        </div>
+        <div class='modal-body'>
+          <%= render 'users/confirm_deactivate' %>
+        </div>
+      </div>
+    <%end%>
+    <div id='user-profile-modal' class='modal hide fade'>
+      <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+          <h2 id='myModalLabel'></h2>
+      </div>
+      <div class='modal-body'>
+      </div>
+    </div>
+    <%= render 'layouts/unauthorized_modal' %>
+    <header class='navbar navbar-fixed-top'>
+      <nav class='navbar-inner'>
+        <div id = 'update-nav' class='container'>
+          <!--! Add/edit the navigation links in the _navigation partial-->
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+    <div id='main' role='main'>
+      <div class='container'>
+        <div class='content' id='content-div-application' value=''>
+          <% if params[:controller] == ''%>
+            <div class='row'>
+              <div class='span8'>
+                <% if params[:controller] == 'home'%>
+                  <div id='IdeaStream'>
+                    <%= render 'layouts/messages' %>
+                    <%= yield %>
+                  </div>
+                <% else %>
+                  <%= render 'layouts/messages' %>
+                  <%= yield %>
+                <% end %>
+              </div>
+              <div class ='row'>
+                <div id='sidebar' class='span4'><!--! Trending view rendered here--></div>
+                <div id='sidebar' class='span4'>
+                  <%= yield :sidebar %></div>
+              </div>
+            </div>
+          <% else %>
+            <% if params[:controller] == 'home'%>
+              <div id='IdeaStream'>
+                <%= render 'layouts/messages' %>
+                <%= yield %>
+              </div>
+            <% else %>
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <!--! end of .container -->
+    </div>
+    <div class="container">
+      <div id="example" class="modal hide fade in" style="display: none; ">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>invite Committee members</h3>
+        </div>
+        <div class="modal-body">
+          <h4>enter the email below</h4>
+          <%= form_tag( '/invite_committee', :method => "get") do %>
+            <%= text_field_tag(:email,nil,:placeholder => 'enter email here' , :class => 'span3') %></p>
+        </div>
+        <div class="modal-footer">
+            <%= submit_tag("send invitation",:class => 'btn btn-success') %>
+          <% end %>
+          <a href="#" class="btn" data-dismiss="modal">Close</a>
+        </div>
+      </div>
+    </div>
+    <!--! end of #main -->
+  </body>
+</html>

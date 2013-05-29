@@ -1,0 +1,5 @@
+<div id='Stream'>
+  <% @approved.each do |approved| %>
+    <%= render partial: 'ideas/stream_component', locals: { idea: approved } %>
+  <% end %>
+</div>

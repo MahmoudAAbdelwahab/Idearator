@@ -1,0 +1,38 @@
+<%= form_for(current_user, remote: true, url: url_for(controller: 'users', action: 'change_settings'), :html => { :class => "form-horizontal" } ) do |form| %>
+	<% if current_user.provider	==	"facebook"%>
+		<div class="well">
+		  <label class="checkbox">
+			  <%= check_box_tag 'user[]', '3', current_user.facebook_share %>
+			  Share Actions On Facebook
+			</label>
+			<p class="muted">This Allows us to Automatically share all your actions on your Facebook Account.</p>
+		</div>
+	<%end%>
+  <%if current_user.provider== "twitter"%>
+    <div class="well">
+      <label class="checkbox">
+        <%= check_box_tag 'user[]', '3', current_user.facebook_share %>
+        Share actions on Twitter
+      </label>
+      <p class="muted">This allows us to automatically share your actions on your Twitter account.</p>
+    </div>
+  <%end%>
+	<div class="well">
+	  <label class="checkbox">
+		  <%= check_box_tag 'user[]', '1', current_user.own_idea_notifications %>
+		  Recieve Notifications on your own submitted Ideas
+		</label>
+		<p class="muted">This allows you to recieve notifications whenever anyone comments on or votes for any of your ideas.</p>
+	</div>
+	<div class="well">
+		<label class="checkbox">
+		  <%= check_box_tag 'user[]', '2', current_user.participated_idea_notifications%>
+		  Recieve Notifications for any updates on ideas you commented on or liked
+		</label>
+		<p class="muted">This allows you to stay up to date with what's happening with the ideas that interest you. </p>
+	</div>
+	<div class="form-actions">
+	  <input id="submit" class="btn btn-primary" name="commit" type="submit" value="Save Changes">
+	  <input id="cancel" class="btn" type="reset" name="reset" value="Cancel">
+	</div>
+<% end %>

@@ -1,0 +1,28 @@
+<h4 class='text-center unauth-header'>Sign in</h4>
+<%= form_tag user_session_path do %>
+  <%= label_tag 'email' %>
+  <%= text_field_tag 'user[email]' %>
+  <%= label_tag 'password' %>
+  <%= password_field_tag 'user[password]' %>
+  <div class='unauth-remember-me'>
+    <%= check_box_tag 'user[remember_me]' %>
+    <%= label_tag 'user[remember_me]', 'Remember me', class: 'inline remember_me_label' %>
+  </div>
+    <%= link_to "Forgot your password?", new_password_path('user'), class: 'forgot_password_link'%>
+    <br />
+    <div class="text-center">
+      <%= submit_tag 'Sign in', class: 'btn btn-success sign_in_button' %>
+    </div>
+<% end %>
+<ul class='inline unstyled text-center unauth-sign-in-social-div'>
+  <li>
+    <%= link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook),
+    :class => 'popup facebook-nav-login unauth-sign-in-social',
+    "data-width" => 600, "data-height" => 500 %>
+  </li>
+  <li>
+    <%= link_to 'Sign in with Twitter', user_omniauth_authorize_path(:twitter),
+    :class => 'popup twitter-nav-login unauth-sign-in-social',
+    'data-width' => 600, 'data-height' => 500  %>
+  </li>
+</ul>

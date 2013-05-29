@@ -1,0 +1,15 @@
+<h1 align='middle'>
+  <% if current_user == @user %>
+    My Ideas
+  <% else %>
+    <%= @user.username %>'s ideas
+  <% end %>
+</h1>
+<% if @user == current_user %>
+  <%= link_to 'My dashboard', {:controller => 'dashboard' ,:action => 'index'},:class => "btn btn-primary "%>
+<% end %>
+<br />
+<br />
+<% @ideas.each do |idea| %>
+  <%= render partial: 'ideas/stream_component', locals: { idea: idea } %>
+<%end%>

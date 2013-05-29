@@ -1,0 +1,8 @@
+ $('tbody').append("<tr>
+          <td><%= escape_javascript(@sym.name)%></td>
+          <td><%= escape_javascript(l @sym.created_at) %></td>
+          <td>
+            <%= escape_javascript (hidden_field_tag 'sym', tag.id) %>
+            <%= escape_javascript(x.submit 'x', :class => "btn btn-danger") %>
+          </td>
+        </tr>");

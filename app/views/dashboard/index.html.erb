@@ -1,0 +1,182 @@
+<script src='http://www.google.com/jsapi'></script>
+<h1 align='middle'>Dashboard</h1>
+<div class='nav nav-tabs'>
+  <% if @user.type == 'Committee' %>
+    <ul class='nav nav-tabs'>
+      <li class='active'>
+        <a href='#pane1' data-toggle='tab'>
+          My Ideas
+        </a>
+      </li>
+      <li>
+        <a href='#pane2' data-toggle='tab'>
+          Approved Ideas
+        </a>
+      </li>
+    </ul>
+  <% end %>
+  <div class='tab-content'>
+    <div id='pane1' class='tab-pane active'>
+      <div id="own-bulb-count-error" class="alert fade in">
+        <button type="button" class="close">×</button>
+        Please remove an idea from the five displayed ideas to continue.
+      </div>
+      <div id = 'own' class = 'idea-list'>
+        <table class = "table table-bordered" id = "tabletags">
+          <th>My Ideas</th>
+          <tr class = "warning">
+            <td>
+              <% @own_ideas.each do |idea| %>
+                <% @own_counter = @own_counter + 1 %>
+                <% if idea.user.active == true && idea.user.banned == false %>
+                  <li class='idea-link' data-idea-id='<%= @own_counter %>' value='0' data-link="<%= (url_for :controller => 'dashboard', :action => 'gettags', :ideaid => idea.id, :remote => true).html_safe %>">
+                    <%= idea.title %>
+                  </li>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class='bulb-container well'>
+      </div>
+    </div>
+    <% if @user.type == 'Committee' %>
+      <div id='pane2' class='tab-pane'>
+        <div class="alert fade in" id="comm-bulb-count-error">
+          <button type="button" class="close">×</button>
+          Please remove an idea from the five displayed ideas to continue.
+        </div>
+        <div id = 'comm' class = 'idea-list'>
+          <table class = "table table-bordered" id = "tabletags">
+            <th>Approved Ideas</th>
+            <tr class = "warning">
+              <td>
+                <% @approved_ideas.each do |idea| %>
+                  <% @approved_counter = @approved_counter + 1 %>
+                  <% if idea.user.active == true && idea.user.banned == false %>
+                    <li class='idea-link' data-idea-id='<%= @approved_counter %>' value='0' data-link="<%= (url_for :controller => 'dashboard', :action => 'gettags', :ideaid => idea.id, :remote => true).html_safe %>">
+                      <%= idea.title %>
+                    </li>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class='bulb-container well'>
+        </div>
+      </div>
+    <% end %>
+    <div id='tagsall'>
+    </div>
+    <div id='graph'>
+    </div>
+  </div><!-- /.tab-content -->
+</div><!-- /.tabbable -->
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    <% if @user.is_a? Committee %>
+      $('#comm li').click(function() {
+
+        var bulb_count = $('.bulb-container-comm').length;
+        if(bulb_count == 5 && this.value == 0){
+          $("#comm-bulb-count-error").show();
+        }
+
+        if(this.value == 0 && bulb_count != 5) {
+          var thresholds_temp = <%= @approved_thresholds %>;
+          var approved_ideas = <%= @approved_ideas.to_json.html_safe %>;
+          var idea = approved_ideas[parseInt($(this).attr('data-idea-id'))-1];
+          var title = idea.title;
+          var id = idea.id;
+          var this_threshold = thresholds_temp[parseInt($(this).attr('data-idea-id'))-1];
+          $('#pane2 .bulb-container').append(
+            "<div class='bulb-container-comm' id='" + parseInt($(this).attr('data-idea-id')) + "'>" +
+              "<div class='bulb-img'><div class='threshold-" + Math.round(this_threshold / 10) * 10 + "'></div></div>"+
+              "<span class='badge badge-inverse'>" + this_threshold + "%</span>"+
+              "<div class='idea-title'>" + "<a data-remote='true' href='" + $(this).attr('data-link') + "'>" + title + "</a>" + "</div></div>"
+            );
+          this.value = 1;
+          $(this).css({
+          backgroundColor: '#FFDEAD'
+          });
+
+        }
+        else {
+
+          $('#pane2 .bulb-container '+'#'+ $(this).attr('data-idea-id')).remove();
+          this.value = 0;
+          $(this).css({
+          backgroundColor: ''
+          });
+
+        }
+
+        bulb_count = $('.bulb-container-comm').length;
+        if(bulb_count==4) {
+        $('#comm-bulb-count-error').hide();
+        }
+
+      });
+    <% end %>
+
+    $('#own li').click(function() {
+
+        var bulb_count = $('.bulb-container-own').length;
+        if(bulb_count == 5 && this.value == 0){
+          $("#own-bulb-count-error").show();
+        }
+
+        if(this.value == 0 && bulb_count != 5) {
+          var thresholds_temp = <%= @own_thresholds %>;
+          var own_ideas = <%= @own_ideas.to_json.html_safe %>;
+          var idea = own_ideas[parseInt($(this).attr('data-idea-id'))-1];
+          var title = idea.title;
+          var id = idea.id;
+          var this_threshold = thresholds_temp[parseInt($(this).attr('data-idea-id'))-1];
+
+          $('#pane1 .bulb-container').append(
+            "<div class='bulb-container-own' id='" + parseInt($(this).attr('data-idea-id')) + "'>" +
+              "<div class='bulb-img'><div class='threshold-" + Math.round(this_threshold / 10) * 10 + "'></div></div>"+
+              "<span class='badge badge-inverse'>" + this_threshold + "%</span>"+
+              "<div class='idea-title'>" + "<a data-remote='true' href='" + $(this).attr('data-link') + "'>" + title + "</a>" + "</div></div>"
+            );
+
+          this.value = 1;
+          $(this).css({
+          backgroundColor: '#FFDEAD'
+          });
+
+        }
+
+        else {
+          $('#pane1 .bulb-container '+'#'+ $(this).attr('data-idea-id')).remove();
+          this.value = 0;
+          $(this).css({
+          backgroundColor: ''
+          });
+
+        }
+        bulb_count = $('.bulb-container-own').length;
+        if(bulb_count==4){
+        $('#own-bulb-count-error').hide();
+        }
+
+    });
+
+
+
+    $('#comm-bulb-count-error .close').click( function() {
+      $('#comm-bulb-count-error').hide();
+    });
+
+    $('#own-bulb-count-error .close').click( function() {
+      $('#own-bulb-count-error').hide();
+    });
+
+  });
+</script>

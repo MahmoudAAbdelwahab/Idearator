@@ -1,0 +1,5 @@
+<%= form_for @tag , :remote => true do |f|%>
+  <div class="new-tag span12", id='new-tag'>
+    <%= f.text_field :name, :class => 'text_field span12', :placeholder => 'Create a new tag here', :data => { :provide => "typeahead" } %>
+  </div>
+<% end %>

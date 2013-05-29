@@ -1,0 +1,49 @@
+<%= form_for(@competition) do |f| %>
+  <fieldset>
+    <% if @competition.errors.any? %>
+      <div id = 'error_explanation'>
+        <% @competition.errors.full_messages.each do |msg| %>
+          <span><%= msg %></span>
+        <% end %>
+      </div>
+    <% end %>
+    <div class='control-group' >
+      <%= f.label :title , :class=> 'control-label'%>
+      <div class='controls'>
+        <%= f.text_field :title, :class=> 'text_field', :placeholder=>'Write title here...',:required => true %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= f.label :description, :class=> 'control-label'%>
+      <div class="controls">
+        <%= f.text_area :description, :class=> 'text_field', :size => "5x5", :placeholder=>"Write description here...",:required => true %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= f.label :Start_date, :class=> 'control-label'%>
+      <div class='controls'>
+        <%= f.date_select :start_date %>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= f.label :End_date, :class=> 'control-label'%>
+      <div class='controls'>
+             <%= f.date_select :end_date %>
+      </div>
+    </div>
+    <%= f.label :tags, :class=> 'control-label'%>
+    <div id="competition-tags">
+      <% Tag.all.each do |tag|%>
+        <div class='competition-tag'>
+          <%= check_box_tag 'competition[tag_ids][]', tag.id, @competition.tags.include?(tag), data: {tag_name: tag.name } %>
+          <%= tag.name %>
+        </div>
+      <% end %>
+      <span class = 'help-inline'>Please check the relative tags</span>
+    </div>
+    <%= hidden_field_tag 'competition[tag_ids][]', '' %>
+    <div class="actions">
+      <%= f.submit nil, :class=> 'btn btn-primary'%>
+    </div>
+  </fieldset>
+<% end %>

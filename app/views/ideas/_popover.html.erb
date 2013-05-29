@@ -1,0 +1,50 @@
+<div id='popoverIdeaWhole'>
+  <%= javascript_include_tag '/ideas/popover' %>
+  <div class='idea-popover idea-<%= @idea.id %>'>
+    <div class="row">
+      <div class="span8">
+        <h4 class="text-info" style = "color: #141B7F;" id= 'titleTag'><%= @idea.title %></h4>
+        <h5 style="
+    padding-left: 276px;" id= 'userTag'>
+          <span>by:
+            <%=link_to @idea.user.username ,@idea.user.becomes(User)%></span>
+        </h5>
+      </div>
+    </div>
+    <div class="media" id='popoverWhole'>
+      <div class="pull-left" href='#'>
+        <img class='media-object'id= 'imageTag'>
+          <%= image_tag @idea.photo.url(:medium) , :size => '100x50'%>
+        </div>
+        <div class="media-body" id="descriptionTag">
+          <div class='row'>
+            <h6 id='desPop'>
+              <%= @idea.description %>
+            </h6>
+          </div>
+          <div class='row'>
+            <div class='tagsPopover'>
+              <% @idea.tags.each do |tag| %>
+                <span class="label label-info "><%= tag.name %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+          <div class='span1' id='commentsPopovers'>
+            <span class='label label-success' id='commentsPopover'>
+              Number of comments
+            </span><div class="fb-comments-count" data-href="http://apps.facebook.com/idearator/ideas/<%= @idea.id %>" id='numberCommentsPopover'><h5>0</h5></div>
+          </div>
+          <%if @chosentags != nil %>
+            <% @chosentags.each do |tag|%>
+              <span class="label label-info "><%= tag.name %></span>
+            <% end %>
+          <% end %>
+          <div class="span2 pull-right" id='votesPopover'>
+            <%= render :partial => "/ideas/vote_component", locals: { idea: @idea ,size: 'span1', large: false} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

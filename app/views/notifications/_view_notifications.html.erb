@@ -1,0 +1,12 @@
+<%if @notifications.length > 0 %>
+  <%if user_signed_in?%>
+    <% @notifications.each do |notification| %>
+      <%= render partial: 'notifications/view', locals: {notification: notification} %>
+    <% end %>
+    <li><div class="text-right padding_right"><%= link_to('view all', controller: 'notifications',
+          action: 'view_all_notifications')%></div></li>
+  <% end %>
+<%else%>
+  <li class="disabled text-center"><a>
+      You dont have any notifications</a></li>
+<%end%>

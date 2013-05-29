@@ -1,0 +1,12 @@
+<% if current_user %>
+  <% if @committee.type == "Committee" %>
+    <% if @ideas.count == 0 %>
+      <h2>No ideas to review</h2>
+    <% end %>
+    <%= render '/ideas/unapproved_stream_component' %>
+  <% else %>
+    <h2>You are not a committee member to review ideas</h2>
+  <% end %>
+<% else %>
+  <h2>You are not a committee member to review ideas</h2>
+<% end %>

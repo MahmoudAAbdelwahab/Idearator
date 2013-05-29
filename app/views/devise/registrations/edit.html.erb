@@ -1,0 +1,77 @@
+<h2>
+  Edit Profile
+</h2>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-horizontal">
+    <fieldset>
+      <legend>Personal Information</legend>
+      <div class="control-group">
+        <label class="control-label">First name</label>
+        <div class="controls">
+          <div><%= f.text_field :first_name, :title => 'First Name', :placeholder => 'First Name' %></div>
+        </div>
+        <label class="control-label">Last name</label>
+        <div class="controls">
+          <div><%= f.text_field :last_name, :title => 'Last Name', :placeholder => 'Last Name' %></div>
+        </div>
+        <label class="control-label">Username</label>
+        <div class="controls">
+          <div><%= f.text_field :username, :title => 'Username', :placeholder => 'Username' %></div>
+        </div>
+        <label class="control-label">Birth Date</label>
+        <div class="controls">
+          <div>
+            <%= f.date_select :date_of_birth, {:order => [:day, :month, :year],
+                                       :start_year => Time.now.year - 16,
+                                       :end_year => 1940,
+                                       :prompt => {:month => 'Month', :day => 'Day', :year => 'Year'}},
+                                      {:class => 'date-select'} %>
+          </div>
+        </div>
+        <label class="control-label">Gender</label>
+        <div class="controls">
+          <label><%= f.radio_button :gender, "male" %>Male</label>
+          <label><%= f.radio_button :gender, "female" %>Female</label>
+        </div>
+        <label class="control-label">About me</label>
+        <div class="controls">
+          <div><%= f.text_area :about_me, :title => 'About me', :rows => 4, :placeholder => 'About me..'%></div>
+        </div>
+        <br />
+        <label class="control-label">Photo</label>
+        <div class="controls">
+          <div>
+            <%= image_tag @user.photo.url(:thumb), :width => '60px', :height => '60px' %>
+            <br />
+            <%= f.file_field :photo %>
+          </div>
+        </div>
+      </div>
+      <legend>Account Information</legend>
+      <div class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls">
+          <div><%= f.email_field :email, :autofocus => true %></div>
+        </div>
+        <label class="control-label">Password</label>
+        <div class="controls">
+          <div><%= f.password_field :password, :autocomplete => "off" %></div>
+        </div>
+        <label class="control-label">Password Confirmation</label>
+        <div class="controls">
+          <div><%= f.password_field :password_confirmation %></div>
+        </div>
+      </div>
+      <legend>Submit changes</legend>
+      <label class="control-label">Current Password</label>
+      <div class="controls">
+        <div><%= f.password_field :current_password, :placeholder => 'Please fill to submit changes' %></div>
+      </div>
+      <div class="controls">
+        <%= f.submit "Update", :class => 'btn btn-primary', :redirect_to => resource.becomes(User) %>
+        <%= link_to 'Cancel', resource.becomes(User), :class => 'btn' %>
+      </div>
+    </fieldset>
+  </div>
+<% end %>

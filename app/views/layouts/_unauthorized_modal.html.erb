@@ -1,0 +1,51 @@
+<div id='signedout' class='modal hide fade' data-backdrop='static' data-keyboard='false'>
+  <div class='modal-header'>
+    <div class='close' aria-hidden='true' type='button'><%= link_to '×', '/', class: 'unauth-modal-close' %></div>
+      <h3 class='text-center'>Looks like you want to sign up with us!</h3>
+  </div>
+  <div class='modal-body unauthorized-body'>
+      <div class='container unauth-huge unauth-left'>
+        <div class='row'>
+          <div class='span6 unauth-width'>
+            <div class='span4 well unauth-min-height unauthorized-sign-up'>
+              <%= render 'users/sign_up_form' %>
+            </div>
+            <div class='well span2 unauth-buttons unauth-min-height unauthorized-sign-in-up'>
+              <h1 class='text-center'>OR</h1>
+              <a id='unauth-sign-in-button' class='btn btn-large btn-success btn-block unauthorized-sign-in'>Sign in</a>
+                <ul class='text-center unstyled unauth-sign-in-div'>
+                  <li>
+                    <%= link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook),
+                    :class => 'popup facebook-nav-login unauth-sign-in',
+                    "data-width" => 600, "data-height" => 500 %>
+                  </li>
+                  <li>
+                    <%= link_to 'Sign in with Twitter', user_omniauth_authorize_path(:twitter),
+                    :class => 'popup twitter-nav-login unauth-sign-in',
+                    'data-width' => 600, 'data-height' => 500  %>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <div class='span6 unauth-width'>
+            <div class='well span2 unauth-buttons unauth-min-height unauthorized-sign-in-up unauth-change-margin'>
+              <h1 class='text-center'>OR</h1>
+              <a id='unauth-sign-up-button' class='btn btn-large btn-info btn-block unauthorized-sign-up'>Sign up</a>
+            </div>
+            <div class='span4 well unauth-min-height unauthorized-sign-up sign-in-form'>
+              <%= render 'users/sign_in_form' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='well unauthorized-sign-in-up span6 sign-in-form'>
+          <%= render 'users/sign_in_form' %>
+        </div>
+        <div class='well span2 unauth-buttons unauthorized-sign-in-up'>
+          <h1 class='text-center'>OR</h1>
+          <a class='btn btn-large btn-info btn-block unauthorized-sign-up'>Sign up</a>
+        </div>
+      </div>
+  </div>
+</div>

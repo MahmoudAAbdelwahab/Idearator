@@ -1,0 +1,30 @@
+<div id="Stream">
+  <% @approved.each do |approved| %>
+    <% if approved.user.active == true and approved.user.banned == false and approved.approved == true%>
+      <div class = 'user-idea'>
+        <div class="wrapper row block">
+          <div class="span2"><%= image_tag approved.photo.url(:medium) %>
+          </div>
+          <div class="span6">
+            <div class="span1 pull-right">
+              <%= link_to approved.user.username , approved.user.becomes(User) %>
+            </div>
+            <h3>
+              <%= link_to  approved.title , approved %>
+            </h3>
+            <%= approved.description %>
+            <ul class ="inline">
+              <% approved.tags.each do |tag| %>
+                <li style = "color: #0060ff;"><%= tag.name %></li>
+              <% end %>
+            </ul>
+            <span class="idea-vote inline"><%=  approved.num_votes.to_s %></span>
+            <br />
+            <button class="btn btn-large btn-success inline pull-right margin" type="button">Vote!
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

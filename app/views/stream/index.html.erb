@@ -1,0 +1,299 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "navigationscroll.js" %>
+<% end %>
+
+<script>
+in_stream = true;
+</script>
+
+<%if current_user == nil%>
+  <div id= "landing">
+    <div class="hero-unit text-center" id="title">
+      <h1>Idearator</h1>
+      <p>The Community that turns your ideas into a Reality</p>
+    </div>
+    <div class='row'>
+      <div class="span3 pull-right signinout">
+        <%= link_to('Sign in', new_user_session_path , :class =>"btn btn-success btn-large btn-block signin-landing signin-landing-button") %>
+        <%= link_to('Sign up', new_user_session_path , :class =>"btn btn-info btn-large btn-block signin-landing signup-landing-button") %>
+        <ul class='inline unstyled text-center'>
+          <li>
+            <%= link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook),
+            :class => 'popup facebook-nav-login landing-login',
+            "data-width" => 600, "data-height" => 500 %>
+          </li>
+          <li>
+            <%= link_to 'Sign in with Twitter', user_omniauth_authorize_path(:twitter),
+            :class => 'popup twitter-nav-login landing-login',
+            'data-width' => 600, 'data-height' => 500  %>
+          </li>
+        </ul>
+        <div class="text-center">
+          <h5>OR</h5>
+        </div>
+        <div class= "landing-sign-up">
+          <%= render 'users/sign_up_form_landing' %>
+        </div>
+        <div class= "landing-sign-in-form">
+          <%= render 'users/sign_in_form_landing' %>
+        </div>
+      </div>
+      <div id="myCarousel" class="carousel slide span9">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner carouselitem text-center">
+          <div class="active item">
+            <div class="text-center">
+              <%= image_tag('lightbulb-image-for-WEbsite1.jpg')%>
+              <div class="carousel-caption text-center">
+                <h4>Have an Awsome Idea ?!</h4>
+                <h4>Decide you want to share your idea with the world.</h4>
+              </div>
+            </div>
+          </div>
+          <div class="item carouselitem">
+            <div class="text-center">
+              <%= image_tag('331281.jpg')%>
+            </div>
+            <div class="carousel-caption text-center">
+              <h4>Sign up right now to Idearator</h4>
+            </div>
+          </div>
+          <div class="item carouselitem">
+            <div class="text-center">
+              <%= image_tag('bulb1.jpg')%>
+            </div>
+            <div class="carousel-caption text-center">
+              <h4>Submit your idea</h4>
+              <h4>Let the community decide the future of your idea</h4>
+              <h4>Turn your idea into a Reality</h4>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
+    </div>
+    <% if @best.size != 0%>
+      <div class="container best-ideas-div img-rounded">
+        <div class="text-center">
+          <h3 class="fancy-title">Checkout Some of our best ideas</h3>
+        </div>
+        <% @best.each do |best| %>
+          <div class='best-wrapper' data-idea-id='<%= best.id %>'>
+            <%= image_tag best.photo.url(:medium) ,:class => 'img-rounded best-ideas' %>
+            <div class='description-caption img-rounded text-center'>
+              <h3 class='description_content best-title'><%= best.title%></h3>
+              <h4 class='description_content best-user'> By <%= best.user.username %></h4>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <%end%>
+    <div class="text-center">
+      <button class="stream-generate-button">Check Out The Latest Ideas</button>
+    </div>
+  </div>
+  <div id="landing-stream">
+    <div class='row'>
+      <div class='span8'>
+        <div id="stream_results">
+          <%= render :partial => 'index'%>
+        </div>
+      </div>
+      <div class ='row'>
+        <div id='sidebar' class='span4'>
+          <div class="topten" id="sidebar_content">
+            <h1 class="title">Top Ten</h1>
+            <% @top.each do |top| %>
+            <% if top.user.active == true and top.user.banned == false%>
+            <div class="topten_idea media">
+              <h4 class="media-heading idea">
+                <a data-popover-idea-id=<%=top.id %>>
+                  <%= top.title %>
+                </a>
+              </h4>
+              <a class="pull-left" href="#">
+                <span class="image"><%= image_tag(top.photo.url(:thumb), :size => "40x40") %></span>
+              </a>
+              <div class="media-body">
+                <span>by: <%= link_to  top.user.username, top.user.becomes(User)  %></span>
+                <br>
+                <span class="badge"><%= top.num_votes %>
+                   votes</span>
+              </div>
+            </div>
+            <% end %>
+            <%end%>
+          </div>
+          <%= render :partial => '/trends/index'%>
+          <div class="affix" data-spy='affix'>
+            <button class="btn backtotop" type="button">To Top
+              <i class = 'icon-black icon-hand-up'></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%else%>
+  <div>
+    <div class='row'>
+      <div class='span8'>
+        <div id="stream_results">
+          <%= render :partial => 'index'%>
+        </div>
+      </div>
+      <div class ='row'>
+        <div id='sidebar' class='span4'>
+          <% if MonthlyWinner.all.count > 0 %>
+            <div class='topten'>
+              <div class='row'>
+                <h3 class='title1'>Idea of the Month</h3>
+              </div>
+              <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                  <div class="active item">
+                    <div id='idea_of_the_month'>
+                      <div class='row'>
+                        <% month = @first.created_at.month %>
+                        <% case month %>
+                        <% when 1 %>
+                        <h1 class='title'>January</h1>
+                        <% when 2 %>
+                        <h1 class='title'>February</h1>
+                        <% when 3 %>
+                        <h1 class='title'>March</h1>
+                        <% when 4 %>
+                        <h1 class='title'>April</h1>
+                        <% when 5 %>
+                        <h1 class='title'>May</h1>
+                        <% when 6 %>
+                        <h1 class='title'>June</h1>
+                        <% when 7 %>
+                        <h1 class='title'>July</h1>
+                        <% when 8 %>
+                        <h1 class='title'>August</h1>
+                        <% when 9 %>
+                        <h1 class='title'>September</h1>
+                        <% when 10 %>
+                        <h1 class='title'>October</h1>
+                        <% when 11 %>
+                        <h1 class='title'>November</h1>
+                        <% when 12 %>
+                        <h1 class='title'>December</h1>
+                        <% end %>
+                      </div>
+                      <div class="topten_idea media">
+                        <a class="pull-left" href="#">
+                          <span class="image"><%= image_tag(@first.photo.url(:thumb), :size => "80x80") %></span>
+                        </a>
+                        <div class="media-body">
+                          <span><%= link_to @first.user.username, @first.user.becomes(User) %></span>
+                          <h4 class="media-heading idea">
+                            <%= link_to @first.title ,@first %>
+                          </h4>
+                          <span class="badge"><%= @first.num_votes %>
+                            votes</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% @winners.each do |second| %>
+                      <% @second=Idea.find(second.idea_id) %>
+                        <div class="item">
+                          <div id='idea_of_the_mouth'>
+                            <div class='row'>
+                              <% month = @first.created_at.month %>
+                              <% case month %>
+                              <% when 1 %>
+                              <h1 class='title'>January</h1>
+                              <% when 2 %>
+                              <h1 class='title'>February</h1>
+                              <% when 3 %>
+                              <h1 class='title'>March</h1>
+                              <% when 4 %>
+                              <h1 class='title'>April</h1>
+                              <% when 5 %>
+                              <h1 class='title'>May</h1>
+                              <% when 6 %>
+                              <h1 class='title'>June</h1>
+                              <% when 7 %>
+                              <h1 class='title'>July</h1>
+                              <% when 8 %>
+                              <h1 class='title'>August</h1>
+                              <% when 9 %>
+                              <h1 class='title'>September</h1>
+                              <% when 10 %>
+                              <h1 class='title'>October</h1>
+                              <% when 11 %>
+                              <h1 class='title'>November</h1>
+                              <% when 12 %>
+                              <h1 class='title'>December</h1>
+                              <% end %>
+                            </div>
+                            <div class="topten_idea media">
+                              <a class="pull-left" href="#">
+                                <span class="image"><%= image_tag(@second.photo.url(:thumb), :size => "80x80") %></span>
+                              </a>
+                              <div class="media-body">
+                                <span><%= link_to @second.user.username, @second.user.becomes(User) %></span>
+                                <h4 class="media-heading idea">
+                                  <%= link_to @second.title ,@second %>
+                                </h4>
+                                <span class="badge"><%= @second.num_votes %>votes</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+              </div>
+            </div>
+          <% end %>
+          <div class="topten">
+            <h1 class="title">Top Ten
+            </h1>
+            <% @top.each do |top| %>
+              <% if top.user.active == true and top.user.banned == false%>
+                <div class="topten_idea media well">
+                  <h4 class="media-heading idea">
+                    <a data-popover-idea-id=<%=top.id %>>
+                      <%= top.title %>
+                    </a>
+                  </h4>
+                  <a class="pull-left" href="#">
+                    <span class="image"><%= image_tag(top.photo.url(:thumb), :size => "40x40") %></span>
+                  </a>
+                  <div class="media-body">
+                    <span>by: <%= link_to top.user.username, top.user.becomes(User) %></span>
+                    <br>
+                    <span class="badge"><%= top.num_votes %>
+                      votes</span>
+                  </div>
+                </div>
+              <% end %>
+            <%end%>
+          </div>
+          <%= render :partial => '/trends/index'%>
+          <div class="affix" data-spy='affix'>
+            <button class="btn backtotop" type="button">To Top
+              <i class = 'icon-black icon-hand-up'></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+
+
+
+

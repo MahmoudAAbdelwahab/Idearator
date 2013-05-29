@@ -1,0 +1,4 @@
+<div class='well notification delete-notification <%= read ? 'read' : 'unread' %>' data-time=<%= notification.created_at.to_i %> data-notification = <%= notification.id %>>
+  <span><%= notification.text %></span>
+  <span class='notification-date'><%= notification.created_at.to_s(:long)%></span>
+</div>

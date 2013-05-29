@@ -1,0 +1,2 @@
+$("#user-profile-modal .modal-body").html("<%= escape_javascript(render(:partial => "profile_modal"))%>");
+$('#user-profile-modal #myModalLabel').html("<%= @selected_user.username %>");

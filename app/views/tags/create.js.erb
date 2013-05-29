@@ -1,0 +1,6 @@
+<% if @tag %>
+  $('#end_new-tag').after("<%= escape_javascript(render :partial => 'tag', :locals => { :tag => @tag }) %>");
+  $('#new-tag').find('.text_field').val("");
+<% else %>
+  $('#new-tag').find('.text_field').attr("placeholder", "<%= escape_javascript(@tag.errors)%>");
+<% end %>

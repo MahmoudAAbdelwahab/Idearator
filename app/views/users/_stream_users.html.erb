@@ -1,0 +1,21 @@
+<% if user.active and !user.banned %>
+  <div class='wrapper row'>
+    <div class="span8" id="share">
+      <div class='span6'>
+        <h4 class='inline'><%= link_to  user.username , user %></h4>
+      </div>
+      <div class='span2'>
+        <div>
+          <%= link_to user.becomes(User) do %>
+            <%= image_tag user.photo.url(:medium)%>
+          <% end %>
+        </div>
+      </div>
+      <div class='span4'>
+        <div><%= user.email %></div>
+        <span>Published <%= user.ideas.count %> Ideas</span>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <% end %>

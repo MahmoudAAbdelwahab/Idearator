@@ -1,0 +1,93 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#all-tags {
+  display: none;
+}
+
+select.date-select {
+  width: 80px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+
+p{
+  padding-left:20px;
+}
+
+.user-photo {
+  display: inline-block;
+  position: absolute;
+  width: 290px;
+}
+
+.user-details {
+  display: inline-block;
+  position: relative;
+  left: 250px;
+  down: 60px;
+}
+
+#user-about {
+  position: relative;
+  left: 55px;
+}
+
+.new-idea {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+
+#user dt {
+  font-size: 20px;
+}
+
+#user dd {
+  font-size: 18px;
+}
+
+#user {
+  width: 900px;
+  height: 300px;
+}
+
+#user label {
+  font-size: 22px;
+}
+
+.user-idea {
+  position: relative;
+  width: 800px;
+  left: 20px;
+}
+
+#user input {
+  width: 40%;
+}
+
+#user-about-me {
+  width: 100%;
+  max-width:600px;
+  word-wrap: break-word;
+}
+
+#user .best_in_place {
+  padding: .1m;
+  cursor: hand;
+  cursor: pointer;
+  -moz-transition: background 0.5s linear;
+  -o-transition: background 0.5s linear;
+  -webkit-transition: background 0.5s linear;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#user .best_in_place:hover, .do_hover {
+  background-color: #CCC;
+}

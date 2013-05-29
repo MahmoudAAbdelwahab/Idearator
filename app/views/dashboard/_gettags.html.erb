@@ -1,0 +1,12 @@
+<div id = "tagsall">	
+  <table class = "table table-bordered" id = "tabletags">
+    <th>Tags</th>
+    <% @ideatags.each do |it| %>
+      <tr class = "warning">
+        <td><i class="icon-tag"></i><%= link_to it.name, :controller=> "dashboard", :action => "getideas", :tagid => it.id, :remote => true %>
+	      <span class="badge badge-info"><%= it.ideas.count %></span>
+	    </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

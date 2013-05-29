@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Synonym</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <%= form_for @tag, :url => url_for(:controller => 'tags', :action => 'delsym') do |x|%>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= link_to tag.name, tag_path(tag) %></td>
+          <td><%=l tag.created_at %></td>
+          <td>
+            <%= hidden_field_tag 'sym', tag.id %>
+            <%= x.submit 'x', :class => "btn btn-danger"%>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,61 @@
+.competition{
+  border-radius: 20px;
+  background-color: rgba(0,0,0,0.1);
+  word-wrap: break-word;
+  margin-bottom: 30px;
+}
+
+.taging{
+  color: #0060ff;
+  font-size: 16px;
+}
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}
+
+.description{
+  border-radius: 20px;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.currenttag{
+  background-color: #EFF2F7;
+    border: 1px solid #CCD5E4;
+    border-radius: 5px 5px 5px 5px;
+    color: #000000;
+    cursor: default;
+    float: left;
+    font-size: 16px;
+    height: auto !important;
+    margin: 3px;
+    overflow: hidden;
+    padding: 1px 3px;
+    white-space: nowrap;
+}
+
+.delete-token{
+  color: #A6B3CF;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#myIdeas {
+    /* new custom width */
+    width: 835px;
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    margin-left: -387px;
+}
+
+#stream_competition{
+  border-left-style: solid;
+  border-left-color: #FFFFFF;
+  border-left-width: 1px;
+}
+
+

@@ -1,0 +1,5 @@
+class AddIdToUserRating < ActiveRecord::Migration
+  def change
+    add_column :user_ratings, :int, :id
+  end
+end

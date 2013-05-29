@@ -1,0 +1,21 @@
+
+#modal-profile-picture {
+  display: block;
+  width: 200px;
+  position: relative;
+  bottom: 10px;
+}
+
+.modal-user-details {
+  position: absolute;
+  left: 160px;
+  bottom: 40px;
+}
+
+#idea-count-button {
+  float: right;
+}
+
+#user-profile-modal {
+  display: none;
+}

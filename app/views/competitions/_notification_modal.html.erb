@@ -1,0 +1,28 @@
+<div id="MyModal-<%= @approved.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <% entry=CompetitionEntry.find(:all,:conditions =>{:approved => false, :rejected => false, :competition_id => @competition.id, :idea_id => @approved.id}) %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel" class='<%=@approved.id%>'><%=@approved.title%></h3>
+  </div>
+  <div class="modal-body">
+    <a class="pull-right" href="#">
+      <span class="image <%=@approved.id%>"><%= image_tag(@approved.photo.url(:thumb), :size => "80x80") %></span>
+    </a>
+    <h4 class='<%=@approved.id%>'>Description</h4>
+    <p id='approvep'><%=@approved.description%></p>
+    <div class='<%=@approved.id%>'>
+      <h4>Problem solved:</h4>
+      <p><%=@approved.problem_solved%></p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <% if entry.count >0 %>
+      <div id='<%=@approved.id%>btns'>
+        <%= link_to 'Approve', { :controller => "competitions", :action => "approve", :idea_id => @approved.id ,:id => @competition.id} ,:class => 'btn btn-success',remote: true, :'data-dismiss' => 'modal' %>
+        <%= link_to 'Reject', { :controller => "competitions", :action => "reject", :idea_id => @approved.id, :id => @competition.id} ,:class => 'btn btn-danger',remote: true,:'data-dismiss' => 'modal' %>
+      </div>
+    <% else %>
+      <p>This idea has been reviewed</p>
+    <%end%>
+  </div>
+</div>

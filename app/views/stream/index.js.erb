@@ -1,0 +1,4 @@
+<% if @page == "1"%>
+$("#stream_results").html("");
+<% end %>
+$("#stream_results").append("<%= escape_javascript(render(:partial => "index")) %>");

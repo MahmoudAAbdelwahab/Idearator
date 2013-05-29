@@ -1,0 +1,33 @@
+<% if idea.user.active and !idea.user.banned and idea.approved %>
+  <div class='wrapper row'>
+    <div class="idea-<%= idea.id%> span8" id="share">
+      <div class='span6'>
+        <h4 class='inline'><%= link_to  idea.title , idea %></h4>
+      </div>
+      <div class='span2'>
+        <%= image_tag idea.photo.url(:medium) %>
+        <ul class ="inline">
+          <% idea.tags.each do |tag| %>
+            <% if params[:controller] == 'stream' %>
+            <button class="btn btn-link" value='<%= tag.name %>'>
+              <span class="label label-info "><%= tag.name %></span>
+            </button>
+            <% else %>
+            <span class="label label-info"><%= link_to tag.name, {:controller => "stream", :action => "index", :tag => [tag.name], :mypage => "1" , :search_user => "false", :insert => "true", :set_global => "true"}, :class => "outside_tag_button"%></span>
+            <% end %>
+          <% end %>
+        </ul>
+          <%= render :partial => "/ideas/share", locals: { idea: idea } %>
+      </div>
+      <div class='span4'>
+        <%= 'by' %>
+        <span><%= link_to idea.user.username , idea %></span>
+        <div><%= idea.description %></div>
+      </div>
+      <div class='span1 pull-right'>
+        <%= render :partial => "ideas/vote_component", locals: { idea: idea ,size: 'span1'} %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<hr />

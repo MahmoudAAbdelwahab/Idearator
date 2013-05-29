@@ -1,0 +1,14 @@
+<div class="tag span12" id = "<%= tag.name %>">
+  <div class="pull-left">
+    <h5><%= link_to tag.name, tag_path(tag), :remote => true %></h5>
+  </div>
+  <div class="pull-right">
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_tag_path(tag), :class => 'btn' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      tag_path(tag),
+                      :method => :delete,
+                      :class => 'delete_tag btn btn-danger', :remote => true %>
+  </div>
+  <div class="span12"><hr></div>
+</div>

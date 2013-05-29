@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" media="all"
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"/>
+<div id='delete-modal' class="modal hide fade" tabindex='-1' role='dialog' aria-labelledby='delete-modal-label' aria-hidden='true'>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Are you sure you want to delete?!</h3>
+  </div>
+  <div class="modal-body">
+    <p>If you Delete the idea, your idea will be eleminated as all votes, comments and ratings will be deleted!</p>
+  </div>
+  <div class="modal-footer">
+    <a data-dismiss='modal' data-toggle="#delete-modal" class="btn btn-success">Close</a>
+    <%= link_to 'Delete', competition_path(@competition), :method => :delete, :class => 'btn btn-danger' %>
+  </div>
+</div>
+<div class='competition-page competition-<%= @competition.id %>'>
+  <div class='row'>
+    <div class='span12'>
+      <h3><%= @competition.title %></h3>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='span4' id="comp_desc">
+      <div id='tags'>
+        <%if @chosen_tags_competition != nil %>
+          <% @chosen_tags_competition.each do |tag|%>
+            <span class="label label-info "><%= tag.name %></span>
+          <% end %>
+        <% end %>
+      </div>
+      <h4>Description</h4>
+      <div><%= best_in_place_if user_signed_in? && current_user.id == @competition.investor_id, @competition, :description ,  type: :textarea %></div>
+      <h4>Start date</h4>
+      <div><%= best_in_place_if user_signed_in? && current_user.id == @competition.investor_id, @competition, :start_date , :type => 'date'%></div>
+      <h4>End date</h4>
+      <div><%= best_in_place_if user_signed_in? && current_user.id == @competition.investor_id, @competition, :end_date , :type => 'date' %></div>
+      <% if user_signed_in? &&current_user.id == @competition.investor_id %>
+        <div class='btn-group' id='control'>
+          <%= link_to 'Edit', edit_competition_path(@competition),:class=>'btn btn-primary'%>
+          <a data-toggle='modal' data-target='#delete-modal' data-remote='true' class='btn btn-danger btn-delete'>Delete</a>
+          <%= link_to 'Review Ideas', { :controller => 'competitions', :action => 'review_competitions_ideas' }, :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+    <div class='span7' id='stream_competition' value='<%= @competition.id%>'>
+      <% if @competition.open and current_user and not current_user.is_a? Investor %>
+        <p><a data-toggle="modal" href="#myIdeas" class="btn btn-primary ">Enroll an Idea</a></p>
+        <%= render :partial => 'enroll_idea', :locals => {:@approved => @myIdeas}%>
+      <% end %>
+      <% if @ideas.count == 0 %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>There are no ideas yet</strong>
+        </div>
+      <% else %>
+        <%= render :partial => 'show'%>
+      <% end %>
+    </div>
+  </div>
+</div>

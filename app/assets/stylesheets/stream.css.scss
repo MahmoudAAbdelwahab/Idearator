@@ -1,0 +1,353 @@
+// Place all the styles related to the stream controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.well-small{
+	 width:auto;
+	 max-width:150px;
+	 margin:1px;
+	 height:5px;
+}
+
+.idea-votes{
+ padding-left: 87%;
+  font-size: 35px;
+  margin-right: 25px;
+}
+
+.affix{
+    bottom: 5%;
+    padding-left: 5%;
+}
+
+.block{
+  box-shadow: 0px 0px 2px rgba(51,51,51,0.9);
+  margin-bottom: 20px;
+}
+
+.wrapper{
+  margin-top: 20px;
+}
+
+.margin{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+
+}
+
+.hidden{
+  display: none;
+}
+
+.topten{
+  padding: 10px;
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.10);
+}
+.image{
+  margin-left: 10px;
+}
+.title{
+  margin-left: 20%;
+  padding: 10px;
+
+}
+.title1{
+  margin-left: 100px;
+}
+.idea{
+  width: 200px;
+}
+
+.topten_idea{
+  background: rgba(0, 0, 0, 0.10);
+}
+.tag{
+  color: #0060ff;
+}
+
+#landing-stream{
+  display:none;
+}
+.idea-votes{
+ padding-left: 87%;
+ font-size: 35px;
+ margin-right: 25px;
+}
+
+.affix{
+  bottom: 5%;
+  padding-left: 5%;
+}
+
+.block{
+  box-shadow: 0px 0px 2px rgba(51,51,51,0.9);
+  margin-bottom: 20px;
+}
+
+.wrapper{
+  margin-top: 20px;
+}
+
+.margin{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+
+}
+
+.hidden{
+  display: none;
+}
+
+.topten{
+  padding: 10px;
+  margin: 10px;
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.image{
+  margin-left: 10px;
+}
+
+.title{
+  margin-left: 20%;
+  padding: 10px;
+}
+
+.title1{
+  margin-left: 100px;
+}
+
+.idea{
+  width: 200px;
+}
+
+.topten_idea{
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.tag{
+  color: #0060ff;
+}
+
+#title{
+  margin-top:0px;
+  padding-top:0px;
+  margin-bottom:0px;
+  padding-bottom:10px;
+}
+
+#signin{
+  margin-top:110px;
+}
+
+.facebook{
+  width:30px;
+  height:30px;
+  cursor: pointer;
+  padding-right:5px;
+}
+
+.twitter{
+  width:30px;
+  height:30px;
+  cursor:pointer;
+}
+
+.landing-login{
+  display: block;
+  width: 170px;
+  height: 40px;
+  font-size: 0;
+}
+
+.signinout{
+  position:relative;
+  opacity:0.8;
+  filter:alpha(opacity=40);
+}
+
+.signinout:hover{
+  opacity:1.0;
+  filter:alpha(opacity=100);
+}
+
+.landing-sign-up input{
+  margin-left:30px;
+}
+
+.landing-sign-up .sign-up-landing-button{
+  margin-left:5px;
+}
+
+.landing-sign-up label{
+  margin-left:30px;
+}
+
+.best-ideas{
+  width:350px;
+  height:250px;
+  border-radius:0.5em;
+}
+
+div.best-wrapper{
+    cursor:pointer;
+    margin-left:30px;
+    margin-top:0px;
+    margin-bottom:40px;
+    float:left; /* important */
+    position:relative; /* important(so we can absolutely position the description div */
+}
+
+.best-ideas:hover{
+  box-shadow: 0px 0px 0.5em #000000;
+}
+
+div.description-caption{
+    display:none;
+    position:absolute; /* absolute position (so we can position it where we want)*/
+    bottom:0px; /* position will be on bottom */
+    left:0px;
+    width:100%;
+    /* styling bellow */
+    background-color:black;
+    font-family: 'tahoma';
+    font-size:15px;
+    color:white;
+    opacity:0.9; /* transparency */
+    filter:alpha(opacity=60); /* IE transparency */
+}
+p.description_content{
+    padding:10px;
+    margin:0px;
+}
+
+.fancy-title{
+  color:rgba(0,0,128,0.75);
+}
+
+.best-ideas-div{
+  background:rgba(0, 0, 0, 0.10);
+}
+
+.best-title{
+  color:#00ffff;
+}
+
+.stream-generate-button {
+  margin-top:20px;
+  -moz-box-shadow:inset 0px 0px 30px 2px #f29c93;
+  -webkit-box-shadow:inset 0px 0px 30px 2px #f29c93;
+  box-shadow:inset 0px 0px 30px 2px #f29c93;
+  background-color:#fe1a00;
+  -moz-border-radius:40px;
+  -webkit-border-radius:40px;
+  border-radius:40px;
+  display:inline-block;
+  color:#ffffff;
+  font-family:arial;
+  font-size:25px;
+  font-weight:bold;
+  padding:16px 49px;
+  text-decoration:none;
+  text-shadow:1px 0px 0px #b23e35;
+}
+
+.stream-generate-button:hover {
+  background-color:#ce0100;
+}
+
+.stream-generate-button:active {
+  position:relative;
+  top:1px;
+}
+
+.landing-sign-up .sign-up-landing-button {
+  margin-top:30px;
+  -moz-box-shadow:inset 7px -7px 46px 12px #3c85de;
+  -webkit-box-shadow:inset 7px -7px 46px 12px #3c85de;
+  box-shadow:inset 7px -7px 46px 12px #3c85de;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+  background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+  background-color:#3d94f6;
+  -moz-border-radius:42px;
+  -webkit-border-radius:42px;
+  border-radius:42px;
+  display:inline-block;
+  color:#ffffff;
+  font-family:arial;
+  font-size:25px;
+  font-weight:bold;
+  padding:10px 63px;
+  text-decoration:none;
+  text-shadow:1px 0px 22px #1570cd;
+}
+
+.landing-sign-up .sign-up-landing-button:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+  background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+  background-color:#1e62d0;
+}
+
+.landing-sign-up .sign-up-landing-button:active {
+  position:relative;
+  top:1px;
+}
+
+.landing-sign-in-form .sign-up-landing-button {
+  margin-top:30px;
+  -moz-box-shadow:inset 7px -7px 46px 12px #3c85de;
+  -webkit-box-shadow:inset 7px -7px 46px 12px #3c85de;
+  box-shadow:inset 7px -7px 46px 12px #3c85de;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+  background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+  background-color:#3d94f6;
+  -moz-border-radius:42px;
+  -webkit-border-radius:42px;
+  border-radius:42px;
+  display:inline-block;
+  color:#ffffff;
+  font-family:arial;
+  font-size:25px;
+  font-weight:bold;
+  padding:10px 63px;
+  text-decoration:none;
+  text-shadow:1px 0px 22px #1570cd;
+}
+
+.landing-sign-in-form .sign-up-landing-button:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+  background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+  background-color:#1e62d0;
+}
+
+.landing-sign-in-form .sign-up-landing-button:active {
+  position:relative;
+  top:1px;
+}
+
+.landing-sign-in-form input{
+  margin-left:30px;
+}
+
+.landing-sign-in-form .sign-up-landing-button{
+  margin-left:5px;
+}
+
+.landing-sign-in-form label{
+  margin-left:30px;
+}
+
+.landing-sign-in-form .remember_me_label{
+  margin-left:0px;
+}
+
+.media-heading{
+  cursor:pointer;
+}
+

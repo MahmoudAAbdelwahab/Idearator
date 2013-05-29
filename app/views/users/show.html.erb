@@ -1,0 +1,134 @@
+<link rel="stylesheet" type="text/css" media="all"
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"/>
+<h1>
+  <% if @user.username != "" and @user.username %>
+    <%= @user.username %>'s Profile
+  <% else %>
+    User's Profile
+  <% end %>
+</h1>
+<% if @user.banned == true %>
+  <p class='text-error'>This User is currently banned!</p>
+<% elsif @user.active == false %>
+  <p class='text-error'>This User is currently deactivated!</p>
+<% end %>
+<div class="btn-group">
+  <% if @user == current_user %>
+    <%= link_to 'Edit', edit_user_registration_path, :class => "btn"%>
+    <%= link_to 'Deactivate', {:controller => 'users' ,:action => 'confirm_deactivate'},:class => "btn"%>
+  <% end %>
+  <% if current_user != nil && current_user.type == 'Admin' && @user.active == true && @user.banned == false %>
+    <%= link_to 'Ban', { :controller => 'admins', :action => 'ban_unban' }, :id =>params[:id], :confirm => 'Are you sure you want to Ban this user?', :class => 'options btn btn-danger' %>
+  <% end %>
+  <% if current_user != nil && current_user.type == 'Admin' && @user.banned==true %>
+    <%= link_to 'Unban', { :controller => 'admins', :action => 'ban_unban' }, :id =>params[:id], :confirm => 'Are you sure you want to Unban this user?', :class => 'options btn btn-success' %>
+  <% end %>
+  <% if current_user != nil && current_user.type == 'Committee' && current_user == @user%>
+    <%= link_to 'Review Ideas', { :controller => 'committees', :action => 'review_ideas' }, :class => 'btn' %>
+  <% end %>
+  <% if current_user != nil && current_user.type == "Admin" && @user.active==true && !@registered and @user.banned == false %>
+    <%= link_to "Invite", { :controller => "users", :action => "invite_member", :id => @user }, :class => "options btn btn-primary" %>
+  <%end%>
+  <% if current_user != nil and current_user.type == "Admin" and @registered and @user.banned==false%>
+    <%= render :partial => 'modal_approve'%>
+    <p><a data-toggle="modal" href="#approve" class="options btn btn-success">Approve</a></p>
+  <% end %>
+  <% if current_user != nil and current_user.type == "Admin" and @registered and @user.banned==false%>
+    <%= render :partial => 'modal_reject'%>
+    <p><a data-toggle="modal" href="#reject" class="options btn btn-danger">Reject</a></p>
+  <% end %>
+</div>
+<% if @user.banned == false and @user.active == true %>
+  <div id='user'>
+    <div class='user-photo'>
+      <%= image_tag @user.photo.url(:medium) %>
+    </div>
+    <div class = 'user-details'>
+      <dl class='dl-horizontal'>
+        <dt>Email</dt>
+        <dd><%= @user.email %></dd>
+        <br />
+        <% if @user != current_user %>
+          <dt>First Name</dt>
+          <dd>
+            <% if @user.first_name != "" and @user.first_name %>
+              <%= @user.first_name %>
+            <% else %>
+              Not specified
+            <% end %>
+          </dd>
+          <br />
+          <dt>Last Name</dt>
+          <dd>
+            <% if @user.last_name != "" and @user.last_name %>
+              <%= @user.last_name %>
+            <% else %>
+              Not specified
+            <% end %>
+          </dd>
+          <br />
+          <dt>Date of birth
+          </dt>
+          <dd>
+            <% if @user.date_of_birth != "" and @user.date_of_birth %>
+              <%= @user.date_of_birth %>
+            <% else %>
+              Not specified
+            <% end %>
+          </dd>
+          <br />
+          <dt>Gender</dt>
+          <dd>
+            <% if @user.gender != "" and @user.gender %>
+              <%= @user.gender %>
+            <% else %>
+              Not specified
+            <% end %>
+          </dd>
+        <% else %>
+          <dt>First Name</dt>
+          <dd>
+            <%= best_in_place @user, :first_name, :nil => 'click to specify your first name' %>
+          </dd>
+          <br />
+          <dt>Last Name</dt>
+          <dd>
+            <%= best_in_place @user, :last_name, :nil => 'click to specify your last name' %>
+          </dd>
+          <br />
+          <dt>Date of birth
+          </dt>
+          <dd>
+            <%= best_in_place @user, :date_of_birth, :type => 'date', :nil => 'not specified' %>
+          </dd>
+          <br />
+          <dt>Gender</dt>
+          <dd>
+            <%= best_in_place @user, :gender, :type => :select, :collection => [['male', 'male'], ['female', 'female'], ['', 'unspecified']], :nil => 'Unspecified' %>
+          </dd>
+        <% end %>
+      </dl>
+      <dl id='user-about'>
+        <dt>About User</dt>
+        <br />
+        <dd id='user-about-me'>
+          <% if current_user == @user %>
+            <%= best_in_place @user, :about_me, :type => 'textarea', :nil => 'click to fill your about me' %>
+          <% elsif @user.about_me != "" and @user.about_me %>
+            <%= @user.about_me %>
+          <% else %>
+            Not specified
+          <% end %>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <% if @user.get_approved_ideas.count != 0 %>
+    <a class="btn btn-primary" type="button" href='/users/<%= @user.id%>/ideas'>View Ideas (<%= @user.get_approved_ideas.count%>)</a>
+  <% end %>
+  <div>
+    <ul class="pager">
+      <li><%= link_to 'Back', :back %></li>
+    </ul>
+  </div>
+<% end %>

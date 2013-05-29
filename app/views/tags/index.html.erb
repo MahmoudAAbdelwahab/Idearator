@@ -1,0 +1,11 @@
+<%- model_class = Tag -%>
+<div class="page-header"></div>
+<div class="container" id="tags">
+  <div class="row">
+    <%= render :partial => 'form' %>
+    <div class="span12", id = 'end_new-tag'><hr></div>
+      <% @tags.each do |tag| %>
+        <%= render :partial => 'tag', :locals => { :tag => tag } %>
+    <% end %>
+     </div>
+  </div>

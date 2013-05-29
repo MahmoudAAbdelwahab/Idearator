@@ -1,0 +1,2 @@
+<span><h2><%= @idea.num_votes %></h2></span>
+<%= link_to 'Vote', { :controller => "ideas", :action => "vote" }, :id => @idea.id, remote: true, :class => 'btn btn-success' %>

@@ -1,0 +1,6 @@
+<h2>Username Taken!</h2>
+<p>That username is already taken! Please choose another one.</p>
+<%= form_tag(:controller => "/registrations", :action => "twitter_screen_name_clash", :remote => true) do %>
+  <%= text_field_tag(:username, params[:username]) %>
+  <%= submit_tag("Ok") %>
+<% end %>

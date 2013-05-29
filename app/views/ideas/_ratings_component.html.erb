@@ -1,0 +1,11 @@
+<% if idea.ratings.size > 0 %>
+  <%= javascript_include_tag 'rating_ballot' %>
+  <div class='span4 archive_status ratings-component average-ratings'>
+    <div class='span4'>Ratings:</div>
+    <div class='span4 avg-ratings'>
+      <% idea.ratings.each do |therating| %>
+        <%= render :partial => '/user_ratings/ratings_component', :locals => { :idea => idea, :therating => therating } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

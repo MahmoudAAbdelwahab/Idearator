@@ -1,0 +1,131 @@
+// Place all the styles related to the Dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tagsall {
+  max-height: 200px;
+  height: auto;
+  width: 180px;
+  overflow: auto;
+  float: left;
+}
+
+#graph {
+  width: 850px;
+  position: relative;
+  left: 230px;
+  bottom: 10px;
+}
+#graph #bubble-chart, #bar-chart {
+  position: absolute;
+  top: 60px;
+}
+#ideas{
+  padding-left: 2cm;
+  max-height: 150px;
+  height: auto;
+  width: 200px;
+  overflow: auto;
+  }
+
+.bulb-img {
+  background-image: url('bulb.png');
+  width: 150px;
+  height: 128px;
+  display: inline-block;
+}
+
+.idea-title {
+  width: 150px;
+  height: 60px;
+}
+
+.bulb-container-comm {
+  float: left;
+}
+
+.bulb-container-own {
+  float: left;
+}
+
+.bulb-container {
+  width: 930px;
+  height: 200px;
+}
+
+.idea-list {
+  float: right;
+  position: relative;
+  width: 180px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.tab-content{
+  height: 860px;
+}
+
+.bulb-container-comm .badge, .bulb-container-own .badge {
+  width: 18px;
+  height: 15px;
+  position: relative;
+  right: 60px;
+  bottom: 20px;
+}
+
+#comm-bulb-count-error, #own-bulb-count-error {
+  display: none;
+}
+
+.threshold-10 {
+  box-shadow: 60px 50px 100px 13px #FFFF66;
+  width: 20px;
+  position: relative;
+}
+
+.threshold-20 {
+  box-shadow: 60px 50px 100px 19px #FFFF66;
+  width: 20px;
+  position: relative;
+}
+
+.threshold-30 {
+  box-shadow: 60px 50px 100px 23px #FFFF66;
+  width: 20px;
+  position: relative;
+}
+
+.threshold-40 {
+  box-shadow: 60px 50px 100px 27px #FFFF66;
+  width: 20px;
+  position: relative;
+}
+
+.threshold-50 {
+  box-shadow: 60px 50px 100px 30px #FFFF66;
+  width: 20px;
+}
+
+.threshold-60 {
+  box-shadow: 60px 50px 100px 32px #FFFF66;
+  width: 20px;
+}
+
+.threshold-70 {
+  box-shadow: 60px 50px 100px 34px #FFFF66;
+  width: 20px;
+}
+
+.threshold-80 {
+  box-shadow: 60px 50px 100px 39px #FFFF66;
+  width: 20px;
+}
+
+.threshold-90 {
+  box-shadow: 60px 50px 100px 45px #FFFF66;
+  width: 20px;
+}
+.threshold-100 {
+  box-shadow: 60px 50px  100px 50px #FFFF66;
+  width: 20px;
+}

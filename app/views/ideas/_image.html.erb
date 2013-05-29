@@ -1,0 +1,8 @@
+<%= form_for(@idea,:html => { :multipart => true }) do |i| %>
+  <p>
+    <%= i.file_field :photo %>
+  </p>
+  <p class='actions'>
+    <%= i.submit nil, :class => 'btn btn-primary'%>
+  </p>
+<% end %>

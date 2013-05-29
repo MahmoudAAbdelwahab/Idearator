@@ -1,0 +1,1 @@
+$(".idea-<%= @idea.id %> .vote-component").replaceWith("<%= escape_javascript(render partial: 'vote_component', locals: { idea: @idea }) %>");

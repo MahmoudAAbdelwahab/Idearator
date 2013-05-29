@@ -1,0 +1,8 @@
+<h3 class = 'title'>Notifications</h3>
+<div id = 'notifications'>
+  <% @all_notifications.each do |notification| %>
+    <%= render partial: 'view', locals: {notification: notification} %>
+    <% notification.set_read_for current_user %>
+    <% count = 0 %>
+  <% end %>
+</div>

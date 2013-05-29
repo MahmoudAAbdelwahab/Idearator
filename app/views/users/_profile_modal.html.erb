@@ -1,0 +1,49 @@
+<div id='modal-profile-picture'>
+  <%= link_to @selected_user.becomes(User) do %>
+    <%= image_tag @selected_user.photo.url(:medium)%>
+  <% end %>
+</div>
+<div class = 'modal-user-details'>
+  <dl class='dl-horizontal'>
+    <dt>Email</dt>
+    <dd><%= @selected_user.email %></dd>
+    <br />
+    <dt>First Name</dt>
+    <dd>
+      <% if @selected_user.first_name != "" and @selected_user.first_name %>
+        <%= @selected_user.first_name %>
+      <% else %>
+        Not specified
+      <% end %>
+    </dd>
+    <br />
+    <dt>Last Name</dt>
+    <dd>
+      <% if @selected_user.last_name != "" and @selected_user.last_name %>
+        <%= @selected_user.last_name %>
+      <% else %>
+        Not specified
+      <% end %>
+    </dd>
+    <br />
+    <dt>Date of birth
+    </dt>
+    <dd>
+      <% if @selected_user.date_of_birth != "" and @selected_user.date_of_birth %>
+        <%= @selected_user.date_of_birth %>
+      <% else %>
+        Not specified
+      <% end %>
+    </dd>
+    <br />
+    <dt>Gender</dt>
+    <dd>
+      <% if @selected_user.gender != "" and @selected_user.gender %>
+        <%= @selected_user.gender %>
+      <% else %>
+        Not specified
+      <% end %>
+    </dd>
+  </dl>
+</div>
+<a class="btn btn-primary" type="button" id='idea-count-button' href='/users/<%= @selected_user.id%>/ideas'>View Ideas (<%= @selected_user_ideas.count%>)</a>

@@ -1,0 +1,63 @@
+<%= form_for(@idea, :html => { :multipart => true }) do |i| %>
+  <fieldset>
+    <% if @idea.errors.any? %>
+      <div id = 'error_explanation'>
+        <% @idea.errors.full_messages.each do |msg| %>
+          <span><%= msg %></span>
+        <% end %>
+      </div>
+    <% end %>
+    <p>
+      <%= i.file_field :photo %>
+    </p>
+    <div class='control-group' >
+      <%= i.label :title , :class=> 'control-label'%>
+      <div class='controls'>
+        <% if @boolean%>
+          <%= i.text_field :title, :class=> 'text_field', :placeholder=>'Write title here...',:readonly => 'true'%>
+          <span class='help-inline'>Sorry you can't change the title</span>
+        <%else%>
+          <%= i.text_field :title, :class=> 'text_field', :placeholder=>'Write title here...',:required => true %>
+          <span class="hint"> Choose a short descriptive title for your idea! <span class="hint-pointer"> </span> </span>
+        <%end%>
+      </div>
+    </div>
+    <div class='control-group'>
+      <%= i.label :description, :class=> 'control-label'%>
+      <div class="controls">
+        <%= i.text_area :description, :class=> 'text_field', :size => "5x5", :placeholder=>"Write description here...",:required => true %>
+        <span class="hint"> Describe your idea in an easy to understand way. <span class="hint-pointer"> </span> </span>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= i.label :problem_solved,:class=> 'control-label'%>
+      <div class="controls">
+        <%= i.text_area :problem_solved,:class=> 'text_field', :size => "5x5", :placeholder=>'Write problem solved here...'%>
+        <span class="hint"> Describe the problem your idea could solve. <span class="hint-pointer"> </span> </span>
+      </div>
+    </div>
+    <div id="idea-tags">
+      <% Tag.all.each do |tag|%>
+        <div class='idea-tag'>
+          <%= check_box_tag 'idea[tag_ids][]', tag.id, @idea.tags.include?(tag), data: {tag_name: tag.name } %>
+          <%= tag.name %>
+        </div>
+      <% end %>
+      <span class = 'help-inline'>Please check the relative tags</span>
+    </div>
+    <%= hidden_field_tag 'idea[tag_ids][]', '' %>
+    <%= hidden_field_tag 'competition_id', @competition %>
+    <div class='actions'>
+      <%= i.submit nil, :class=> 'btn btn-primary'%>
+    </div>
+    <% content_for :sidebar do %>
+      <h2>Hints</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <%end%>
+  </fieldset>
+<% end %>

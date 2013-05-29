@@ -1,0 +1,6 @@
+$("#count").html("<%= escape_javascript(render(partial: "notifications/count_notifications", locals:{count: count})) %>");
+$(".nav .notification:first").before("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read})) %>");
+if($('#notifications').length > 0){
+  $(".content .notification:first").before("<%= escape_javascript(render(partial: "/notifications/view", locals:{notification: notification, read: read})) %>");
+}
+add_notification_event_handlers();

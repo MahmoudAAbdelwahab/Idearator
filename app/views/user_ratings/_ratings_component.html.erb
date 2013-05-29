@@ -1,0 +1,23 @@
+<div id='<%= therating.id %>'>
+  <%= therating.name %>
+  <form class='form-inline'>
+    <%= radio_button_tag('rating[value]', 1, therating.value == 1, :class => 'rating_button average') %>
+    <%= radio_button_tag('rating[value]', 2, therating.value == 2, :class => 'rating_button average') %>
+    <%= radio_button_tag('rating[value]', 3, therating.value == 3, :class => 'rating_button average') %>
+    <%= radio_button_tag('rating[value]', 4, therating.value == 4, :class => 'rating_button average') %>
+    <%= radio_button_tag('rating[value]', 5, therating.value == 5, :class => 'rating_button average') %>
+  </form>
+  <% if user_signed_in? %>
+    <% rating = rating_ballot(therating.id) %>
+    <%= form_for(rating, :remote => true, :html => { :class => 'rating_ballot form-inline' }) do |f| %>
+      <%= radio_button_tag('rating[value]', 1, rating.value == 1, :class => 'rating_button') %>
+      <%= radio_button_tag('rating[value]', 2, rating.value == 2, :class => 'rating_button') %>
+      <%= radio_button_tag('rating[value]', 3, rating.value == 3, :class => 'rating_button') %>
+      <%= radio_button_tag('rating[value]', 4, rating.value == 4, :class => 'rating_button') %>
+      <%= radio_button_tag('rating[value]', 5, rating.value == 5, :class => 'rating_button') %>
+      <%= hidden_field_tag('idea_id', idea.id) %>
+      <%= hidden_field_tag('rating_id', therating.id) %>
+      <%# f.submit :Submit %>
+    <% end %>
+  <% end %>
+</div>

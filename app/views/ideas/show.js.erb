@@ -1,0 +1,5 @@
+<% if @ideavoted.nil? %>
+  $("#change_vote").html("<%= escape_javascript(render(:partial => "unvote")) %>");
+<% else %>
+  $("#change_vote").html("<%= escape_javascript(render(:partial => "vote")) %>");
+<%end%>

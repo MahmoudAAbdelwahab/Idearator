@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to Idearator
+    </h1>
+    <p>
+      You are invited to become a
+      <%= @type %>
+      in
+      <%= @address %>.<br/>
+    </p>
+    <p>
+      To login to the site, just follow this link:
+      <%= url_for(:host => 'localhost:3000', :controller => "registrations", :action => "new") %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

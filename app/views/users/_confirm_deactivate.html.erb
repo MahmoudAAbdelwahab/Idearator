@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<%= form_for(@current_user, remote: true, url: url_for(controller: 'users', action: 'deactivate')) do |form| %>
+  <div class="field">
+    <%= form.label :password %><br />
+    <%= form.password_field :password %>
+  </div>
+  <%= form.submit value = 'confirm' %>
+<% end %>

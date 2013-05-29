@@ -1,0 +1,98 @@
+<% if @firstTime %>
+  <%= javascript_include_tag 'competitions_view' %>
+  <%= stylesheet_link_tag 'competitions'%>
+<% end %>
+<div class="competitions">
+  <% if @filter %>
+    <ul class="currenttags">
+      <% if @tags %>
+        <% @tags.each do |t|%>
+          <li class="taging currenttag">
+            <span class="tag"><%= t %></span>
+            <span class="delete-token">×</span>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <% if @competitions && @competitions.length>0 %>
+      <% @competitions.each do |c| %>
+        <% if c.investor.active and c.investor.banned == false and c.open %>
+          <div class="row-fluid text-center" id='competition-<%= c.id %>'>
+            <div class="competition span12">
+              <div class="row-fluid">
+                <div class="span6">
+                  <h2>
+                    <%= link_to  c.title , c %>
+                  </h2>
+                  <div>
+                    by:
+                    <%= link_to c.investor.username , c.investor.becomes(User) %>
+                  </div>
+                </div>
+                <div class="span6">
+                  <div class="row-fluid">
+                    <div class="span6">
+                      <h4>start date:</h4>
+                      <h4>expiry date:</h4>
+                    </div>
+                    <div class="span6">
+                      <h4 class="green"><%= c.start_date %></h4>
+                      <h4 class="red"><%= c.end_date %></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="row-fluid">
+                <div class="description span9">
+                  <%= c.description %>
+                </div>
+                <div class="dates span3">
+                  <%=
+                  if current_user
+                    link_to_if(current_page?(:controller => 'competitions', :action => 'index'), "Enroll", { :controller => "competitions", :action => "show", :id => c.id }, :class => 'btn btn-primary btn-large') do
+                    if CompetitionEntry.find(:all, :conditions => {:competition_id => c.id, :rejected => false, :idea_id => @idea.id }) == []
+                      link_to("Enroll", { :controller => "ideas", :action => "enter_competition", :id => @idea.id, :competition_id => c.id }, :class => 'btn btn-primary btn-large')
+                    else
+                      link_to("Enrolled", { :controller => "competitions", :action => "show", :id => c.id }, :class => 'btn btn-success btn-large')
+                    end
+                  end
+                end
+                %>
+                </div>
+              </div>
+              <br/>
+              <div class="row-fluid">
+                <div class="span6">
+                  <ul class=" btn-group inline">
+                    <% c.tags.each do |tag| %>
+                      <li class="taging">
+                        <a href="#" class="aTag"><%= tag.name %></a></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class="span6">
+                  <h4>current ideas:
+                    <%= c.ideas.length %></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if @firstTime %>
+      <% if @flag %>
+        <h2 class="red"> You Have No Compeititions with approved Ideas
+        </h2>
+      <% else %>
+      <h2 class="red">Sorry! no Competitions are open for this moment
+        </h2>
+      <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>
