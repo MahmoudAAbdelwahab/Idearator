@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13.rc1'
-gem 'sqlite3', '1.3.7'
+gem 'pg'
 
 gem 'devise', '2.2.3'
 gem 'omniauth', '1.1.3'
